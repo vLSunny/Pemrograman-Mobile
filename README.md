@@ -90,10 +90,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 ---
 
 > Built with 💙 using Flutter – by \[Arman Gilani]
-
-```
-
----
-
-Let me know if you'd like this customized further (e.g., your name, GitHub username, or preferred state management package).
-```
