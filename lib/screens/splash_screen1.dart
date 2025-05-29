@@ -87,6 +87,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
                 Padding(
                   padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
                   child: SizedBox(
+                    height: 55,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -102,7 +103,8 @@ class _SplashScreen1State extends State<SplashScreen1> {
                       },
                       child: ShaderMask(
                         shaderCallback: (bounds) => LinearGradient(
-                          colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                          //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                          colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF), Color(0xFF000000)],
                         ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height),),
                         child: Text("Get Started",
                           style: TextStyle(
