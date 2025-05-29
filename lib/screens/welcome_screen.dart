@@ -33,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       height: 250,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: Image(image: NetworkImage("https://i.pinimg.com/736x/53/3c/36/533c36cee771767ce29da6fdf1a9e225.jpg"),
+                        child: Image(image: AssetImage("assets/images/welcomeimage.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -77,11 +77,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: SizedBox(
+                  height: 55,
                   width: double.infinity,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                        //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                        colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
                       ),
                       borderRadius: BorderRadius.circular(40.0),
                     ),

@@ -71,11 +71,13 @@ class _SplashScreen2State extends State<SplashScreen2> {
           Padding(
             padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
             child: SizedBox(
+              height: 55,
               width: double.infinity,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                    //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+                    colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),

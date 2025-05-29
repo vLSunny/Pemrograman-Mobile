@@ -19,7 +19,8 @@ class _SplashScreen1State extends State<SplashScreen1> {
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+              //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
+              colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -104,7 +105,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
                       child: ShaderMask(
                         shaderCallback: (bounds) => LinearGradient(
                           //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
-                          colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF), Color(0xFF000000)],
+                          colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
                         ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height),),
                         child: Text("Get Started",
                           style: TextStyle(

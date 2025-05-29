@@ -63,7 +63,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             children: [
 
               Padding(
-                padding: EdgeInsets.all(15.0),
+                padding: EdgeInsets.all(20.0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
@@ -130,6 +130,44 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                           ],
                         ),
                       ),
+                      
+                    ],
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Container(
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE9F0FF),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text("Today's Target"),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                        child: ElevatedButton(
+                          //style: ButtonStyle(backgroundColor: Colors.blue[200]),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
+                          ),
+                          onPressed: () {},
+                            child: Text("Check",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                        ),
+                      ),
+
 
                     ],
                   ),
