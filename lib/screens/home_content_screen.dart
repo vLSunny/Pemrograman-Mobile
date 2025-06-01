@@ -150,7 +150,11 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
                       Padding(
                         padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: Text("Today's Target"),
+                        child: Text("Today's Target",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
@@ -168,11 +172,25 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         ),
                       ),
 
-
                     ],
                   ),
                 ),
               ),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text("Activity Status",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    //textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+
+              
 
             ],
           ),
