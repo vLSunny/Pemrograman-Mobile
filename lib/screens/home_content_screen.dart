@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeContentScreen extends StatefulWidget {
   const HomeContentScreen({super.key});
@@ -9,6 +10,17 @@ class HomeContentScreen extends StatefulWidget {
 }
 
 class _HomeContentScreenState extends State<HomeContentScreen> {
+
+  List<Map<String, double>> chartData = [
+    {'x': 0, 'y': 75},
+    {'x': 1, 'y': 78},
+    {'x': 2, 'y': 72},
+    {'x': 3, 'y': 80},
+    {'x': 4, 'y': 74},
+    {'x': 5, 'y': 79},
+    {'x': 6, 'y': 77},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,17 +192,113 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
                   child: Text("Activity Status",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
-                    //textAlign: TextAlign.end,
                   ),
                 ),
               ),
 
-              
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE9F0FF),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(30, 30, 0, 0),
+                        child: Text("Heart Rate",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
+                        child: Text("78 BPM",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFA7B9F7),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 100,
+                        child: SfCartesianChart(
+                          backgroundColor: Colors.transparent,
+                          plotAreaBorderWidth: 0,
+                          primaryXAxis: NumericAxis(isVisible: false),
+                          primaryYAxis: NumericAxis(isVisible: false),
+                          margin: EdgeInsets.zero,
+                          series: <FastLineSeries<Map<String, double>, double>>[
+                            FastLineSeries<Map<String, double>, double>(
+                              dataSource: chartData,
+                              xValueMapper: (data, _) => data['x']!,
+                              yValueMapper: (data, _) => data['y']!,
+                              color: Colors.purpleAccent,
+                              width: 2,
+                              markerSettings: MarkerSettings(isVisible: false),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                          width: 30,
+                          height: 60,
+                          color: Colors.blue,
+                        ),
+                      ),
+
+                    ],
+                  ),
+                  Column(
+                    children: [
+
+                      Container(
+                        width: 30,
+                        height: 30,
+                        color: Colors.blue,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 30,
+                        height: 30,
+                        color: Colors.blue,
+                      ),
+                    ],
+
+                  ),
+                ],
+              ),
+
 
             ],
           ),
