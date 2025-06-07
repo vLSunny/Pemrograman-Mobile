@@ -263,60 +263,85 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    children: [
 
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Container(
-                          //width: double.infinity,
-                          //height: double.infinity,
-                          color: Colors.blue,
-                          child: Row(
-                            children: [
+                  Container(
+                    child: Row(
+                      children: [
 
-                              //LinearProgressIndicator(),
-
-                              Column(
-                                children: [
-
-                                  Text("data1"),
-                                  Text("data1"),
-                                  Text("data1"),
+                        Column(
+                          children: [
 
 
-                                ],
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              child: Container(
+                                width: 35,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFf8f8f8),
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
+                                ),
                               ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Container(
+                                width: 35,
+                                height: 200,
+                                //color: Color(0xFFb4befd),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [Color(0xFFb9adfa), Color(0xFFb4befd)],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20),),
+                                ),
+                              ),
+                            ),
 
-                            ],
-                          ),
+                          ],
                         ),
-                      ),
 
-                    ],
+                      ],
+                    ),
                   ),
+
                   Column(
                     children: [
+
 
                       Container(
-                        width: double.infinity,
-                        height: double.infinity,
+                        width: 10,
+                        height: 100,
                         color: Colors.blue,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Container(
-                        width: double.infinity,
-                        height: double.infinity,
+                        width: 10,
+                        height: 100,
                         color: Colors.blue,
                       ),
-                    ],
 
+                    ],
                   ),
+
                 ],
               ),
 
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  height: 10,
+                  child: LinearProgressIndicator(
+                    value: 0.35, // percent filled
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                    backgroundColor: Color(0xFFFFDAB8),
+                  ),
+                ),
+              ),
 
             ],
           ),
