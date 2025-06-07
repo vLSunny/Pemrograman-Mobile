@@ -269,9 +269,27 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                       Padding(
                         padding: EdgeInsets.all(10),
                         child: Container(
-                          width: 30,
-                          height: 60,
+                          //width: double.infinity,
+                          //height: double.infinity,
                           color: Colors.blue,
+                          child: Row(
+                            children: [
+
+                              //LinearProgressIndicator(),
+
+                              Column(
+                                children: [
+
+                                  Text("data1"),
+                                  Text("data1"),
+                                  Text("data1"),
+
+
+                                ],
+                              ),
+
+                            ],
+                          ),
                         ),
                       ),
 
@@ -281,16 +299,16 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     children: [
 
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: double.infinity,
+                        height: double.infinity,
                         color: Colors.blue,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: double.infinity,
+                        height: double.infinity,
                         color: Colors.blue,
                       ),
                     ],
