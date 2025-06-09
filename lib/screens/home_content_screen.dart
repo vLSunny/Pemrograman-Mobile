@@ -264,64 +264,174 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-                  Container(
-                    child: Row(
-                      children: [
+                  Material(
+                    elevation: 0.5,
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white70,
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                      ),
+                      child: Row(
+                        children: [
 
-                        Column(
-                          children: [
+                          Column(
+                            children: [
 
-
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Container(
-                                width: 35,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFf8f8f8),
-                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Container(
-                                width: 35,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [Color(0xFFb9adfa), Color(0xFFb4befd)],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                                child: Container(
+                                  width: 35,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFf8f8f8),
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
                                   ),
-                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20),),
                                 ),
                               ),
-                            ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                child: Container(
+                                  width: 35,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [Color(0xFFb9adfa), Color(0xFFb4befd)],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20),),
+                                  ),
+                                ),
+                              ),
 
-                          ],
-                        ),
+                            ],
+                          ),
 
-                      ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+                              Text("Water Intake",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: Text("4 Liters",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFA7B9F7),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text("Real time updates"),
+                              ),
+
+                              Row(
+                                children: [
+
+                                  Column(
+                                    children: [
+                                      Text("data"),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text("data"),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+
+                            ],
+                          ),
+
+
+                        ],
+                      ),
                     ),
                   ),
 
                   Column(
                     children: [
 
+                      Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Card(
+                          elevation: 1,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
 
-                      Container(
-                        width: 10,
-                        height: 100,
-                        color: Colors.blue,
+                                Text("Sleep",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("8h 20m",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFA7B9F7),
+                                    ),
+                                  ),
+                                ),
+
+                                //here
+
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: 10,
-                        height: 100,
-                        color: Colors.blue,
+
+                      Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Card(
+                          elevation: 1,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+
+                                Text("Calories",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("760 kCal",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFA7B9F7),
+                                    ),
+                                  ),
+                                ),
+
+                                //here
+
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
 
                     ],
@@ -330,16 +440,9 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ],
               ),
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  height: 10,
-                  child: LinearProgressIndicator(
-                    value: 0.35, // percent filled
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
-                    backgroundColor: Color(0xFFFFDAB8),
-                  ),
-                ),
+              Container(
+                width: 100,
+                height: 200,
               ),
 
             ],
