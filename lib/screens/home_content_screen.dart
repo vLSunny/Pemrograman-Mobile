@@ -288,7 +288,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                               child: Container(
                                 width: 35,
                                 height: 200,
-                                //color: Color(0xFFb4befd),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [Color(0xFFb9adfa), Color(0xFFb4befd)],
