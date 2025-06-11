@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -329,7 +330,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 10),
+                                padding: EdgeInsets.only(top: 10, right: 10),
                                 child: Text("Real time updates"),
                               ),
 
@@ -338,12 +339,127 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
                                   Column(
                                     children: [
-                                      Text("data1"),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20, right: 20),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 40, right: 20),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 50, right: 20),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 50, right: 20),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 60, right: 20),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          width: 10,
+                                          height: 10,
+                                        ),
+                                      ),
+
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      Text("data2"),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("6am - 8am"),
+                                            Text("600ml"),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9am - 11am"),
+                                            Text("500ml"),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("11am - 2pm"),
+                                            Text("1000ml"),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("2pm - 4pm"),
+                                            Text("700ml"),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("4pm - now"),
+                                            Text("900ml"),
+                                          ],
+                                        ),
+                                      ),
+
                                     ],
                                   ),
 
@@ -426,8 +542,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   ),
                                 ),
 
-                                //here
-
                               ],
                             ),
                           ),
@@ -440,9 +554,102 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ],
               ),
 
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text("Workout Progress",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    ElevatedButton(
+                      //style: ButtonStyle(backgroundColor: Colors.blue[200]),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
+                      ),
+                      onPressed: () {},
+                      child: Text("Check",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: SizedBox(
+                  height: 300, // <- This is important!
+                  child: LineChart(
+                    LineChartData(
+                      titlesData: FlTitlesData(
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: true),
+                        ),
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            interval: 1,
+                            getTitlesWidget: (value, meta) => Text(value.toInt().toString()),
+                          ),
+                        ),
+                      ),
+                      borderData: FlBorderData(
+                        show: true,
+                        border: Border.all(color: Colors.grey, width: 1),
+                      ),
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: [
+                            FlSpot(0, 3),
+                            FlSpot(1, 1),
+                            FlSpot(2, 4),
+                            FlSpot(3, 2),
+                            FlSpot(4, 5),
+                          ],
+                          isCurved: true,
+                          color: Colors.blue,
+                          barWidth: 3,
+                          dotData: FlDotData(show: true),
+                          belowBarData: BarAreaData(
+                            show: true,
+                            color: Colors.blue.withOpacity(0.2),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text("Latest Workout",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text("See more"),
+
+                  ],
+                ),
+              ),
+
               Container(
-                width: 100,
-                height: 200,
+                width: double.infinity,
+                height: 100,
               ),
 
             ],
