@@ -338,12 +338,12 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
                                   Column(
                                     children: [
-                                      Text("data"),
+                                      Text("data1"),
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      Text("data"),
+                                      Text("data2"),
                                     ],
                                   ),
 
