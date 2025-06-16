@@ -799,7 +799,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Row(
                                     children: [
 
-                                      Text("180 Calories Burn",
+                                      Text("200 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -812,7 +812,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                             color: Colors.grey[700]
                                         ),
                                       ),
-                                      Text("20 minutes",
+                                      Text("30 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -827,7 +827,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                     children: [
 
                                       Container(
-                                        width: 75,
+                                        width: 125,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           //color: Color(0xFFf8f8f8),
@@ -836,7 +836,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                         ),
                                       ),
                                       Container(
-                                        width: 135,
+                                        width: 80,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFD1D9F6),
@@ -900,7 +900,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Text("Fullbody Workout",
+                                  Text("Abbs Workout",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -910,7 +910,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Row(
                                     children: [
 
-                                      Text("180 Calories Burn",
+                                      Text("190 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -924,7 +924,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                             color: Colors.grey[700]
                                         ),
                                       ),
-                                      Text("20 minutes",
+                                      Text("25 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -1013,7 +1013,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Text("Fullbody Workout",
+                                  Text("Legs Workout",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -1023,7 +1023,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Row(
                                     children: [
 
-                                      Text("180 Calories Burn",
+                                      Text("150 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -1037,7 +1037,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                             color: Colors.grey[700]
                                         ),
                                       ),
-                                      Text("20 minutes",
+                                      Text("15 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -1052,7 +1052,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                     children: [
 
                                       Container(
-                                        width: 75,
+                                        width: 105,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           //color: Color(0xFFf8f8f8),
@@ -1061,7 +1061,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                         ),
                                       ),
                                       Container(
-                                        width: 135,
+                                        width: 105,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFD1D9F6),
@@ -1126,7 +1126,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Text("Fullbody Workout",
+                                  Text("Hands Workout",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -1136,7 +1136,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Row(
                                     children: [
 
-                                      Text("180 Calories Burn",
+                                      Text("110 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -1150,7 +1150,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                             color: Colors.grey[700]
                                         ),
                                       ),
-                                      Text("20 minutes",
+                                      Text("10 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -1165,7 +1165,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                     children: [
 
                                       Container(
-                                        width: 75,
+                                        width: 55,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           //color: Color(0xFFf8f8f8),
@@ -1174,7 +1174,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                         ),
                                       ),
                                       Container(
-                                        width: 135,
+                                        width: 155,
                                         height: 15,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFD1D9F6),
