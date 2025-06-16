@@ -666,26 +666,171 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                 shape: BoxShape.circle,
                                 color: Colors.blue,
                               ),
+                              child: Image(
+                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
+                              ),
                             ),
 
                             Padding(
-                              padding: EdgeInsets.only(left: 20),
+                              padding: EdgeInsets.only(left: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
                                   Text("Fullbody Workout",
                                     style: TextStyle(
-                                      //color: Colors
-                                      //#dcdcdc
+                                      fontSize: 16,
+                                      color: Colors.grey
                                     ),
                                   ),
                                   Row(
                                     children: [
 
-                                      Text("data"),
-                                      Text("|"),
-                                      Text("data"),
+                                      Text("180 Calories Burn",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text(" | ",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text("20 minutes",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Container(
+                                        width: 75,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          //color: Color(0xFFf8f8f8),
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 135,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD1D9F6),
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 50,
+                    ),
+                    //Second Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Row(
+                          children: [
+
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                              child: Image(
+                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
+                              ),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Text("Fullbody Workout",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+
+                                      Text("180 Calories Burn",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text(" | ",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text("20 minutes",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Container(
+                                        width: 75,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          //color: Color(0xFFf8f8f8),
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 135,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD1D9F6),
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                                        ),
+                                      ),
 
                                     ],
                                   ),
