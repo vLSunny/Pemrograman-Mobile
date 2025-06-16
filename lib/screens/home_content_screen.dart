@@ -647,6 +647,72 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ),
               ),
 
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                child: Column(
+                  children: [
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Row(
+                          children: [
+
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Text("Fullbody Workout",
+                                    style: TextStyle(
+                                      //color: Colors
+                                      //#dcdcdc
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+
+                                      Text("data"),
+                                      Text("|"),
+                                      Text("data"),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+                  ],
+                ),
+              ),
+
               Container(
                 width: double.infinity,
                 height: 100,
