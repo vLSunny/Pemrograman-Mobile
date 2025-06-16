@@ -680,6 +680,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Text("Fullbody Workout",
                                     style: TextStyle(
                                       fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.grey
                                     ),
                                   ),
@@ -689,6 +690,119 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                       Text("180 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700],
+                                        ),
+                                      ),
+                                      Text(" | ",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text("20 minutes",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Container(
+                                        width: 75,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 135,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD1D9F6),
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.pinkAccent
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.pinkAccent
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 50,
+                    ),
+                    //Second Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Row(
+                          children: [
+
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                              child: Image(
+                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage2.png"),
+                              ),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Text("Lowerbody Workout",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+
+                                      Text("180 Calories Burn",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.grey[700]
                                         ),
                                       ),
@@ -701,6 +815,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                       Text("20 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.grey[700]
                                         ),
                                       ),
@@ -754,7 +869,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    //Second Row
+                    //Third Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -783,6 +898,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                   Text("Fullbody Workout",
                                     style: TextStyle(
                                         fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.grey
                                     ),
                                   ),
@@ -792,18 +908,235 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                       Text("180 Calories Burn",
                                         style: TextStyle(
                                             fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.grey[700]
                                         ),
                                       ),
                                       Text(" | ",
                                         style: TextStyle(
                                             fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.grey[700]
                                         ),
                                       ),
                                       Text("20 minutes",
                                         style: TextStyle(
                                             fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Container(
+                                        width: 75,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          //color: Color(0xFFf8f8f8),
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 135,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD1D9F6),
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 50,
+                    ),
+                    //Fourth Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Row(
+                          children: [
+
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                              child: Image(
+                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
+                              ),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Text("Fullbody Workout",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+
+                                      Text("180 Calories Burn",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text(" | ",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text("20 minutes",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Container(
+                                        width: 75,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          //color: Color(0xFFf8f8f8),
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 135,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD1D9F6),
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 50,
+                    ),
+                    //Fifth Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Row(
+                          children: [
+
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                              child: Image(
+                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
+                              ),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Text("Fullbody Workout",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+
+                                      Text("180 Calories Burn",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text(" | ",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[700]
+                                        ),
+                                      ),
+                                      Text("20 minutes",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.grey[700]
                                         ),
                                       ),
