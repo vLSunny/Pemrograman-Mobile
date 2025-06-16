@@ -859,10 +859,15 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                           width: 60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.blue,
+                            border: Border.all(
+                                color: Colors.pinkAccent
+                            ),
+                          ),
+                          child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.pinkAccent
                           ),
                         ),
-
                       ],
                     ),
 
@@ -966,7 +971,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                           width: 60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.blue,
+                            border: Border.all(
+                                color: Colors.pinkAccent
+                            ),
+                          ),
+                          child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.pinkAccent
                           ),
                         ),
 
@@ -1073,7 +1084,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                           width: 60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.blue,
+                            border: Border.all(
+                                color: Colors.pinkAccent
+                            ),
+                          ),
+                          child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.pinkAccent
                           ),
                         ),
 
@@ -1180,7 +1197,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                           width: 60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.blue,
+                            border: Border.all(
+                                color: Colors.pinkAccent
+                            ),
+                          ),
+                          child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.pinkAccent
                           ),
                         ),
 
