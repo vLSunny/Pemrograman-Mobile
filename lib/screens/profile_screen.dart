@@ -16,6 +16,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Text("ProfileScreen"),
       ),
 
+      appBar: AppBar(
+        title: Text("data"),
+        actions: [
+          Text("data"),
+        ],
+      ),
+
     );
   }
 }
