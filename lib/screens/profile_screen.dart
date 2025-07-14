@@ -59,60 +59,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: [
 
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Container(
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFE9F0FF),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
 
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: Text("Today's Target",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                        borderRadius: BorderRadius.circular(30), // Rounded corners
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                        child: ElevatedButton(
-                          //style: ButtonStyle(backgroundColor: Colors.blue[200]),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
-                          ),
-                          onPressed: () {},
-                          child: Text("Check",
-                            style: TextStyle(
-                              color: Colors.white,
+                      child: Center(
+                        child: Image.network("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8QEA8ODw8ODRANDQ0NDg4NDQ8PDg4NFREWFhURExUYHSggGBolGxUTITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0OFRAQFSsZFRktKysrKysrNys3LSs3NysrLS0rNysrNzcrKzctKystLSs3LSsrKysrLSsrLSsrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAwEBAQAAAAAAAAAAAAAAAwQFAgEH/8QALBABAAECBAUDAwUBAAAAAAAAAAECAwQRIVExQWFxgRKhsSKR0TJCUnLBFP/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A+4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8mQeiOq/RH7o+XP8A1Ub+0gmEH/VRv7S6i/RP7o+A1KPImJ4a9noAAAAAAAAAAAAAAAAAAAOa64iM50B0hu4imnrO0K17EzOkaR7ygXGbU9eKqnhp24oaqpnjMz3eCoAAAAROXDTsmoxNUde6EBftYmmeOk9U7JS2b809Y2/CYsrRHFu5FUZx9ucO0aAAAAAAAAAAAAAc11xEZzyB5duRTGc+I3Z125NU5z4jlBduTVOc+I2ctSM2gAgAAAAAAAAAD2iuYnONGhYvRVG0xxhnPaKpiYmORiytUcWbkVRn942l2y0AAAAAAAAAAKGLu5zlHCPeVnE3PTT1nSGesZoAqAAAAAmtYeateEdeaxThKeec+TTFEXpwlPWPKC7hZjWPqj3NXEAAgAAACTD3fTPSeLShkr2DuZxlzp+EqxYARoAAAAAAB5Mgo4yvOrL+OnlA9qnOZnec3jTAAAAAsYSzn9U8I4dZV2pbpyiI2gqx0Ay0AAqYuz+6PP5VGrMMuunKZjaZhYzY8AVAABJhq8qo66SjAaw4tVZ0xO8Q7ZbAAAAAAEeInKmrskQ4ufonx8gzwGmAAAAHtHGO8fLVZLTtV5xE7/KVY7ARoAAZuJ/XV3aNU5RMzyjNl1VZzM7zMrErwBWQAAAF/Bz9HaZhOrYH9M/2/wAhZZrUABQAAABBi/0T4+U6LExnRV2BnANMAAAACbDXvTOU8J9pQgNWJesy3eqp4fbksU4zen7SmNatipOMjlTPmUF2/VV0jaDDUuKv5/THDnO6sCsgAAAAALuB/TP9v8hZQYKPp7zMp2a1AAUAAAAeVRpMbvQGTMZabaCbF0ZVd9ULTAAAAAJbNiaukbrluxTTyzneTVxRptVTwif8SRhK+n3XxNXFCcJX0+6OqzVHGmfGrTDTGSNK5Zpq4x55qd7DTTrGse8LqYhAEAAAd2KM6ojzPYGhZpypiNodgy2AAAAAAAAgxdvOnPnTqoNZnYm16Z6Tw/CxmogFQT4ax6tZ4fKOxb9U5cufZpRGWiWrIRD0EaAAAAAAU8Th/wB1PmPwqtZn4m16Z04Tw77LKzYhAVBcwVvT1b6R2VrNv1Tl9+zSiMtNkqx6AjQAAAAAAAA4u24qjKfHSXYDKrpmJynk8aN+zFUbTHCVCqiYn0zpOeTUZsXcHRlTn/LXxyTvIjLTZ6y0AAAAAAAAIsRR6qZjzHdKAySIz0jm7uUfVNMb6LmHsenWdZn2a1jHWHtemOs8ZSgy2AAAAAAAAAAAAOaqInLPlOcOgAAAAAAAAAAAAHMUREzPOeboAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k="),
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Text("Stefani Wong",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
                             ),
                           ),
                         ),
-                      ),
+                        Text("Real time updates"),
 
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
-
-              Row(
-                children: [
-
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(30), // Rounded corners
-                    ),
-                    child: Center(
-                      child: Image.network(),
-                    ),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Text("data"),
                   ),
 
                 ],
