@@ -13,10 +13,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Center(
-        child: Text("ProfileScreen"),
-      ),
-
       appBar: AppBar(
         centerTitle: true,
         title: Text("Profile",
@@ -56,6 +52,75 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ],
+      ),
+
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Container(
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE9F0FF),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text("Today's Target",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                        child: ElevatedButton(
+                          //style: ButtonStyle(backgroundColor: Colors.blue[200]),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
+                          ),
+                          onPressed: () {},
+                          child: Text("Check",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+
+              Row(
+                children: [
+
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(30), // Rounded corners
+                    ),
+                    child: Center(
+                      child: Image.network(),
+                    ),
+                  ),
+
+                ],
+              ),
+
+            ],
+          ),
+        ),
       ),
 
     );
