@@ -60,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
 
                   Padding(
@@ -78,29 +78,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                        Text("Stefani Wong",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black
-                            ),
+                      Text("Stefani Wong",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black
                           ),
                         ),
-                        Text("Real time updates"),
+                      ),
+                      Text("Real time updates"),
 
-                      ],
-                    ),
+                    ],
                   ),
                   ElevatedButton(
                       onPressed: () {},
-                      child: Text("data"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                      child: Text("data",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      ),
                   ),
 
                 ],
