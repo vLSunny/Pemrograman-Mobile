@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text("Stefani Wong1",
+                      Text("Stefani Wong",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 20,
