@@ -17,9 +17,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
 
       appBar: AppBar(
+        centerTitle: true,
         title: Text("data"),
         actions: [
-          Text("data"),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.more_horiz_rounded),
+          ),
         ],
       ),
 
