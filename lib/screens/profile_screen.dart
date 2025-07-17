@@ -113,6 +113,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
 
+              SizedBox(
+                height: 10,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+                  Material(
+                    elevation: 3, // this is your elevation
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white,
+                    child: Container(
+                      width: 100,
+                      height: 80,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                            child: Text("180cm",
+                              style: TextStyle(
+                                color: Colors.blue[200],
+                              ),
+                            ),
+                          ),
+
+                          Text("Height"),
+
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Material(
+                    elevation: 3, // this is your elevation
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white,
+                    child: Container(
+                      width: 100,
+                      height: 80,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                            child: Text("65kg",
+                              style: TextStyle(
+                                color: Colors.blue[200],
+                              ),
+                            ),
+                          ),
+
+                          Text("Weight"),
+
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Material(
+                    elevation: 3, // this is your elevation
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white,
+                    child: Container(
+                      width: 100,
+                      height: 80,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                            child: Text("22yo",
+                              style: TextStyle(
+                                color: Colors.blue[200],
+                              ),
+                            ),
+                          ),
+
+                          Text("Age"),
+
+                        ],
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+
             ],
           ),
         ),
