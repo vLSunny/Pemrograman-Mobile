@@ -205,6 +205,128 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
 
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Material(
+                  elevation: 3, // this is your elevation
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.white,
+                  child: Container(
+                    width: double.infinity,
+                    //height: double.infinity,
+                    child: Column(
+                      children: [
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Personal Data"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Personal Data"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Personal Data"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
             ],
           ),
         ),
