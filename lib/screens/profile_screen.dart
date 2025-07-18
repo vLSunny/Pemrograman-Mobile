@@ -122,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
 
                   Material(
-                    elevation: 3, // this is your elevation
+                    elevation: 3,
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.white,
                     child: Container(
@@ -149,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Material(
-                    elevation: 3, // this is your elevation
+                    elevation: 3,
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.white,
                     child: Container(
@@ -176,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Material(
-                    elevation: 3, // this is your elevation
+                    elevation: 3,
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.white,
                     child: Container(
@@ -206,16 +206,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: Material(
-                  elevation: 3, // this is your elevation
+                  elevation: 3,
                   borderRadius: BorderRadius.circular(16),
                   color: Colors.white,
                   child: Container(
                     width: double.infinity,
-                    //height: double.infinity,
                     child: Column(
                       children: [
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
+                          child: Align(
+                              alignment: Alignment.topLeft,
+                            child: Text("Account",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
 
                         Padding(
                           padding: EdgeInsets.only(top: 10.0),
@@ -340,6 +355,212 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text("Workout Progress"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: Material(
+                  elevation: 3,
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.white,
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text("Notification",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.notifications,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Pop-up Notification"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Switch(
+                                    value: true,
+                                    onChanged: (value) {},
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                child: Material(
+                  elevation: 3,
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.white,
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text("Other",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.email_outlined,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Contact Us"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.privacy_tip_outlined,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Privacy Policy"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.settings,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Settings"),
                                   ),
 
                                 ],
