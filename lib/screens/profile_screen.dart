@@ -263,13 +263,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 20.0),
                                     child: Icon(
-                                      Icons.person,
+                                      Icons.list_alt_rounded,
                                       color: Colors.blue[200],
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
-                                    child: Text("Personal Data"),
+                                    child: Text("Achievement"),
                                   ),
 
                                 ],
@@ -298,13 +298,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 20.0),
                                     child: Icon(
-                                      Icons.person,
+                                      Icons.lock_clock,
                                       color: Colors.blue[200],
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
-                                    child: Text("Personal Data"),
+                                    child: Text("Activity History"),
+                                  ),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 30.0,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Row(
+                                children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Icon(
+                                      Icons.task_alt_rounded,
+                                      color: Colors.blue[200],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text("Workout Progress"),
                                   ),
 
                                 ],
