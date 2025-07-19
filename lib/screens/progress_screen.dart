@@ -327,9 +327,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     ),
                   ),
                 ),
-
-
-
+                Text("Images here"),
 
               ],
             ),
