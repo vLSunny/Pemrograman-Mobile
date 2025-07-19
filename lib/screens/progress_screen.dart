@@ -134,6 +134,67 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   ),
                 ),
 
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEAEEFF),
+                      borderRadius: BorderRadius.circular(26.0),
+                    ),
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            Text("Reminder!",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0XFFC55258),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text("Next Photos Fall On July 08",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 16.0),
+                          child: Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFF9F9),
+                              borderRadius: BorderRadius.circular(36.0), // Rounded corners
+                            ),
+                            child: Icon(
+                                Icons.calendar_month_rounded,
+                                size: 40.0
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),
