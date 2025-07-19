@@ -314,6 +314,18 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     ),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text("5 May",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0XFFC7C7C7),
+                      ),
+                    ),
+                  ),
+                ),
 
 
 
