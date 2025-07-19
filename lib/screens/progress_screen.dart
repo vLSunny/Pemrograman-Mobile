@@ -146,46 +146,78 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
 
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
 
-                            Text("Reminder!",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0XFFC55258),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text("Next Photos Fall On July 08",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    fontSize: 14,
+                              Text("Track Your Progress Each",
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Row(
+                                children: [
 
-                          ],
+                                  Text("Month With ",
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black
+                                      ),
+                                    ),
+                                  ),
+                                  Text("Photo",
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0XFFA5B4F0),
+                                      ),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.only(top: 20.0),
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
+                                  ),
+                                  onPressed: () {},
+                                  child: Text("Learn More",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
                         ),
 
                         Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 16.0),
                           child: Container(
-                            width: 70,
-                            height: 70,
+                            width: 90,
+                            height: 90,
                             decoration: BoxDecoration(
                               color: Color(0xFFFFF9F9),
-                              borderRadius: BorderRadius.circular(36.0), // Rounded corners
+                              borderRadius: BorderRadius.circular(44.0), // Rounded corners
                             ),
                             child: Icon(
                                 Icons.calendar_month_rounded,
-                                size: 40.0
+                                size: 48.0
                             ),
                           ),
                         ),
