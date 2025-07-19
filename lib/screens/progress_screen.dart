@@ -314,6 +314,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     ),
                   ),
                 ),
+                Text("Images here"),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
