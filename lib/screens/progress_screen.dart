@@ -13,24 +13,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      /*appBar: AppBar(
-        leading: IconButton(
-          color: Colors.blue,
-            onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
-        ),
-        title: Text("Progress Photo",
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black
-            ),
-          ),
-        ),
-        centerTitle: true,
-      ),*/
-
       appBar: AppBar(
         centerTitle: true,
         title: Text("Progress Photo",
@@ -81,18 +63,70 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                   child: Container(
-                    color: Color(0xFFFFE6E7),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFE6E7),
+                      borderRadius: BorderRadius.circular(26.0),
+                    ),
                     width: double.infinity,
-                    height: 200,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
 
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.0, 16.0, 0.0, 16.0),
+                          child: Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFF9F9),
+                              borderRadius: BorderRadius.circular(36.0), // Rounded corners
+                            ),
+                            child: Icon(
+                                Icons.calendar_month_rounded,
+                                //color: Colors.white,
+                                size: 40.0
+                            ),
+                          ),
+                        ),
+
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
-
+                            Text("Reminder!",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0XFFC55258),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text("Next Photos Fall On July 08",
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ),
 
                           ],
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.only(top: 6.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              Icon(Icons.cancel_outlined),
+                              SizedBox(
+                                height: 60,
+                              ),
+                            ],
+                          ),
                         ),
 
                       ],
