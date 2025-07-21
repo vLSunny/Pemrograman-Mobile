@@ -1,4 +1,4 @@
-import 'package:fitnestx/screens/welcome_screen.dart';
+import 'package:fitnestx/screens/goal_screen1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -66,7 +66,7 @@ class _SplashScreen6State extends State<SplashScreen6> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WelcomeScreen(),
+              builder: (context) => GoalScreen1(),
             ),
           );
         },
