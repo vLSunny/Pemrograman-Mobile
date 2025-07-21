@@ -1,4 +1,4 @@
-import 'package:fitnestx/screens/welcome_screen.dart';
+import 'package:fitnestx/screens/splash_screen3.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -76,7 +76,6 @@ class _SplashScreen2State extends State<SplashScreen2> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
                     colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -85,8 +84,8 @@ class _SplashScreen2State extends State<SplashScreen2> {
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent, // Important to make gradient visible
-                    shadowColor: Colors.transparent, // Remove shadow if needed
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -95,7 +94,7 @@ class _SplashScreen2State extends State<SplashScreen2> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => WelcomeScreen(),
+                        builder: (context) => SplashScreen3(),
                       ),
                     );
                   },

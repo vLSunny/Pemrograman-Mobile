@@ -82,15 +82,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        //colors: [Color(0xFF9B51E0), Color(0xFF5B67FF)],
                         colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
                       ),
                       borderRadius: BorderRadius.circular(40.0),
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent, // Important to make gradient visible
-                        shadowColor: Colors.transparent, // Remove shadow if needed
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
