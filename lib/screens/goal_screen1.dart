@@ -13,7 +13,9 @@ class _GoalScreen1State extends State<GoalScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(),
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -47,7 +49,6 @@ class _GoalScreen1State extends State<GoalScreen1> {
 
               SizedBox(height: 30),
 
-              // ✅ Rounded Container (working)
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
@@ -129,7 +130,7 @@ class _GoalScreen1State extends State<GoalScreen1> {
                 ),
               ),
 
-              SizedBox(height: 90),
+              SizedBox(height: 75),
 
               Padding(
                 padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
