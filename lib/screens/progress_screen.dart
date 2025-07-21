@@ -457,6 +457,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
           ),
       ),
 
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+        backgroundColor: Color(0XFFD495E7),
+        child: Icon(
+          Icons.camera_alt_outlined,
+          color: Colors.white,
+        ),
+      ),
+
     );
   }
 }
