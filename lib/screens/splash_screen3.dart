@@ -19,24 +19,34 @@ class _SplashScreen3State extends State<SplashScreen3> {
       ),
 
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(
+          children: [
 
-              Text("Eat Well",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black
+            Image.asset(
+              "assets/images/Image1.png",
+              height: 450,
+              fit: BoxFit.cover,
+            ),
+
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text("Eat Well",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black
+                    ),
                   ),
                 ),
               ),
+            ),
 
-              Text("Let's start a healthy lifestyle with us, we can determine your diet every day. Healthy eating is fun.",
+            Padding(
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text("Let's start a healthy lifestyle with us, we can determine your diet every day. Healthy eating is fun.",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                       fontSize: 14,
@@ -45,9 +55,9 @@ class _SplashScreen3State extends State<SplashScreen3> {
                   ),
                 ),
               ),
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
 
