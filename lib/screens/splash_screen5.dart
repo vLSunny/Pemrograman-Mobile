@@ -1,15 +1,15 @@
-import 'package:fitnestx/screens/splash_screen5.dart';
+import 'package:fitnestx/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SplashScreen4 extends StatefulWidget {
-  const SplashScreen4({super.key});
+class SplashScreen5 extends StatefulWidget {
+  const SplashScreen5({super.key});
 
   @override
-  State<SplashScreen4> createState() => _SplashScreen4State();
+  State<SplashScreen5> createState() => _SplashScreen5State();
 }
 
-class _SplashScreen4State extends State<SplashScreen4> {
+class _SplashScreen5State extends State<SplashScreen5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class _SplashScreen4State extends State<SplashScreen4> {
           children: [
 
             Image.asset(
-              "assets/images/Image2.png",
+              "assets/images/Image3.png",
               height: 490,
               fit: BoxFit.cover,
             ),
@@ -32,7 +32,7 @@ class _SplashScreen4State extends State<SplashScreen4> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: Text("Improve Sleep Quality",
+                child: Text("Get Burn",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         fontSize: 35,
@@ -46,7 +46,7 @@ class _SplashScreen4State extends State<SplashScreen4> {
 
             Padding(
               padding: EdgeInsets.only(left: 20.0),
-              child: Text("Improve the quality of sleep with us, good quality sleep can bring a good mood in the morning.",
+              child: Text("Let's keep burning, to achieve your goals, it hurts only temporarily, if you give up now you will be in pain forever.",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     fontSize: 14,
@@ -66,7 +66,7 @@ class _SplashScreen4State extends State<SplashScreen4> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SplashScreen5(),
+              builder: (context) => WelcomeScreen(),
             ),
           );
         },
