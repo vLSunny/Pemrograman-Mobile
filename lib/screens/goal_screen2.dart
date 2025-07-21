@@ -10,6 +10,12 @@ class GoalScreen2 extends StatefulWidget {
 class _GoalScreen2State extends State<GoalScreen2> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+
+      body: Center(
+        child: Text("GoalScreen2!!!!!"),
+      ),
+
+    );
   }
 }
