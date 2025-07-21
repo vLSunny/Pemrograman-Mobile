@@ -1,15 +1,15 @@
-import 'package:fitnestx/screens/splash_screen4.dart';
+import 'package:fitnestx/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SplashScreen3 extends StatefulWidget {
-  const SplashScreen3({super.key});
+class SplashScreen4 extends StatefulWidget {
+  const SplashScreen4({super.key});
 
   @override
-  State<SplashScreen3> createState() => _SplashScreen3State();
+  State<SplashScreen4> createState() => _SplashScreen4State();
 }
 
-class _SplashScreen3State extends State<SplashScreen3> {
+class _SplashScreen4State extends State<SplashScreen4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +23,8 @@ class _SplashScreen3State extends State<SplashScreen3> {
           children: [
 
             Image.asset(
-              "assets/images/Image1.png",
-              height: 450,
+              "assets/images/Image2.png",
+              height: 490,
               fit: BoxFit.cover,
             ),
 
@@ -32,7 +32,7 @@ class _SplashScreen3State extends State<SplashScreen3> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: Text("Eat Well",
+                child: Text("Improve Sleep Quality",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         fontSize: 35,
@@ -46,12 +46,12 @@ class _SplashScreen3State extends State<SplashScreen3> {
 
             Padding(
               padding: EdgeInsets.only(left: 20.0),
-              child: Text("Let's start a healthy lifestyle with us, we can determine your diet every day. Healthy eating is fun.",
+              child: Text("Improve the quality of sleep with us, good quality sleep can bring a good mood in the morning.",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
                   ),
                 ),
               ),
@@ -66,7 +66,7 @@ class _SplashScreen3State extends State<SplashScreen3> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SplashScreen4(),
+              builder: (context) => WelcomeScreen(),
             ),
           );
         },
