@@ -65,7 +65,7 @@ class _GoalScreen3State extends State<GoalScreen3> {
                         height: 10.0,
                       ),
                       Image.asset(
-                        "assets/images/Image6.png",
+                        "assets/images/Image7.png",
                         height: 350,
                         fit: BoxFit.cover,
                       ),
@@ -74,7 +74,7 @@ class _GoalScreen3State extends State<GoalScreen3> {
                       ),
 
                       Text(
-                        "Lose a Fat",
+                        "Improve Shape",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontSize: 16,
@@ -87,8 +87,8 @@ class _GoalScreen3State extends State<GoalScreen3> {
                       Divider(
                         color: Colors.white,
                         thickness: 1.0,
-                        indent: 135.0,
-                        endIndent: 135.0,
+                        indent: 123.0,
+                        endIndent: 123.0,
                       ),
 
                       SizedBox(
@@ -96,7 +96,7 @@ class _GoalScreen3State extends State<GoalScreen3> {
                       ),
 
                       Text(
-                        "I have over 20 lbs to lose. I want to",
+                        "I have a low amount of body fat",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontSize: 16,
@@ -106,7 +106,7 @@ class _GoalScreen3State extends State<GoalScreen3> {
                       ),
 
                       Text(
-                        "drop all this fat and gain muscle",
+                        "and need / want to build more",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontSize: 16,
@@ -116,7 +116,7 @@ class _GoalScreen3State extends State<GoalScreen3> {
                       ),
 
                       Text(
-                        "mass.",
+                        "muscle.",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontSize: 16,

@@ -87,8 +87,8 @@ class _GoalScreen2State extends State<GoalScreen2> {
                       Divider(
                         color: Colors.white,
                         thickness: 1.0,
-                        indent: 135.0,
-                        endIndent: 135.0,
+                        indent: 145.0,
+                        endIndent: 145.0,
                       ),
 
                       SizedBox(
