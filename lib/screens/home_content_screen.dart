@@ -1,3 +1,4 @@
+import 'package:fitnestx/screens/notifications_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,7 +62,14 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotificationsScreen(),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.notification_important, color: Colors.black,),
               ),
             ),
