@@ -74,7 +74,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           height: 60,
                           decoration: BoxDecoration(
                             color: Color(0XFFECF1FD),
-                            borderRadius: BorderRadius.circular(30), // Rounded corners
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           child: Icon(
                             Icons.food_bank_outlined,
@@ -150,7 +150,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                               color: Color(0XFFF5E9FC),
-                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.sports_gymnastics,
@@ -228,7 +228,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                               color: Color(0XFFEDF1FC),
-                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.cake_outlined,
@@ -306,7 +306,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                               color: Color(0XFFF5E9FC),
-                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.sports,
@@ -384,7 +384,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                               color: Color(0XFFE9F0FF),
-                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.lunch_dining,
@@ -462,7 +462,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                               color: Color(0XFFF5E9FC),
-                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.sports_gymnastics_rounded,
