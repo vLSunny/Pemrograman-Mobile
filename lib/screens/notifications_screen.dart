@@ -213,6 +213,84 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
               ),
 
+              Padding(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Expanded(
+                      child: Row(
+                        children: [
+
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Color(0XFFEDF1FC),
+                              borderRadius: BorderRadius.circular(30), // Rounded corners
+                            ),
+                            child: Icon(
+                              Icons.cake_outlined,
+                              size: 30.0,
+                            ),
+                          ),
+
+                          SizedBox(width: 10.0),
+
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+
+                                Text("Hey, let's add some meals for your birthday",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                ),
+
+                                Text("About 3 hours ago",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    Icon(
+                        Icons.more_vert_rounded,
+                        size: 30.0,
+                        color: Colors.grey
+                    ),
+
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
+                  indent: 20.0,
+                  endIndent: 20.0,
+                ),
+              ),
+
             ],
           ),
       ),
