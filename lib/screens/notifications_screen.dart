@@ -32,7 +32,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black,),
             ),
           ),
@@ -123,9 +125,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
               ),
 
-              Divider(
-
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
+                  indent: 20.0,
+                  endIndent: 20.0,
+                ),
               ),
+
+              Text("data"),
 
             ],
           ),
