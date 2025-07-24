@@ -317,70 +317,73 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 ),
                 SizedBox(
                   height: 60,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
 
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage1.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage1.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage2.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage3.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage2.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage4.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage5.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage3.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage4.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage5.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
+                    padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
                     child: Text("5 May",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -391,64 +394,67 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 ),
                 SizedBox(
                   height: 60,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
 
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage6.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage6.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage7.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage8.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage7.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage9.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset("assets/images/FitnessImage10.jpeg",
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage8.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage9.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset("assets/images/FitnessImage10.jpeg",
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
