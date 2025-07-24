@@ -95,7 +95,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     color: Colors.blue[200],
                   ),
                   width: double.infinity,
-                  //color: Colors.blue[100],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
