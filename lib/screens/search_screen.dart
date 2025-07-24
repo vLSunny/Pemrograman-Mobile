@@ -1,4 +1,5 @@
 import 'package:fitnestx/screens/add_alarm_screen.dart';
+import 'package:fitnestx/screens/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -109,10 +110,29 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: List.generate(gridItems.length, (index) {
                     final item = gridItems[index];
                     return InkWell(
-                      onTap: () {
+                      /*onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('${item['title']} tapped')),
                         );
+                      },*/
+                      onTap: () {
+                        String tappedTitle = item['title'];
+
+                        if (tappedTitle == 'Dashboard') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                        } else if (tappedTitle == 'Profile') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                        } else if (tappedTitle == 'Settings') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                        } else if (tappedTitle == 'Notifications') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                        } else if (tappedTitle == 'Calendar') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('$tappedTitle clicked, but no screen found!')),
+                          );
+                        }
                       },
                       child: Container(
                         decoration: BoxDecoration(
