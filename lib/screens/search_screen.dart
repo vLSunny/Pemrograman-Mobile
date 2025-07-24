@@ -69,6 +69,34 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
 
+              SizedBox(
+                height: 20.0,
+              ),
+
+              Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      children: List.generate(6, (index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.shade100,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Item ${index + 1}"
+                            ),
+                          ),
+                        );
+                      },),
+                    ),
+                  ),
+              ),
+
             ],
           ),
       ),
