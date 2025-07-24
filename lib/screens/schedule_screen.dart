@@ -57,58 +57,188 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       ),
 
       body: SafeArea(
-          child: Column(
-            children: [
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
 
-                  Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.grey,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                      child:                               Text("About 1 minute ago",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey
+                      Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.grey,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Text("July 2025",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey
+                            ),
                           ),
                         ),
                       ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: Colors.grey,
-                  ),
+                      Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Colors.grey,
+                      ),
 
-                ],
-              ),
-
-              Expanded(
-                child: SfCalendar(
-                  view: CalendarView.day,
-                  dataSource: WorkoutDataSource(_getWorkoutData()),
-                  timeSlotViewSettings: TimeSlotViewSettings(
-                    startHour: 6,
-                    endHour: 20,
-                    timeFormat: 'h:mm a',
+                    ],
                   ),
-                  todayHighlightColor: Colors.deepPurple,
-                  appointmentTextStyle: TextStyle(color: Colors.white),
-
                 ),
-              ),
 
-              Padding(
-                padding: EdgeInsets.only(top: 60.0),
-                child: Text("data"),
-              ),
+                SizedBox(
+                  height: 105.0,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
 
-            ],
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0XFFF8F8F8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                            child: Column(
+                              children: [
+
+                                Text("Mon",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text("01",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0XFFF8F8F8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                            child: Column(
+                              children: [
+
+                                Text("Tue",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text("02",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0XFFF8F8F8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                            child: Column(
+                              children: [
+
+                                Text("Mon",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text("01",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: 700.0,
+                  child: SfCalendar(
+                    view: CalendarView.day,
+                    dataSource: WorkoutDataSource(_getWorkoutData()),
+                    timeSlotViewSettings: TimeSlotViewSettings(
+                      startHour: 6,
+                      endHour: 20,
+                      timeFormat: 'h:mm a',
+                    ),
+                    todayHighlightColor: Colors.deepPurple,
+                    appointmentTextStyle: TextStyle(color: Colors.white),
+
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.only(top: 60.0),
+                  child: Text("data"),
+                ),
+
+              ],
+            ),
           ),
       ),
 
