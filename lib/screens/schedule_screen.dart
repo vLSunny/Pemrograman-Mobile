@@ -72,7 +72,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         color: Colors.grey,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
                         child: Text("July 2025",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
@@ -392,6 +392,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               ],
             ),
           ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0XFFD495E7),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
 
       backgroundColor: Colors.white,
