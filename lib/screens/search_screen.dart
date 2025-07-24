@@ -110,11 +110,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: List.generate(gridItems.length, (index) {
                     final item = gridItems[index];
                     return InkWell(
-                      /*onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${item['title']} tapped')),
-                        );
-                      },*/
                       onTap: () {
                         String tappedTitle = item['title'];
 
