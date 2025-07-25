@@ -70,7 +70,7 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                       children: [
 
                         Padding(
-                          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                          padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -86,18 +86,88 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,             // Button (background) color
-                                  //shape: BoxShape.rectangle,         // Make it circular
+                                  color: Color(0XFF98B3FF),
                                   borderRadius: BorderRadius.circular(16.0),
                                 ),
                                 child: IconButton(
                                   icon: Icon(Icons.add),
-                                  color: Colors.white,            // Icon color
-                                  onPressed: () {
-                                    // Your logic here
-                                  },
+                                  color: Colors.white,
+                                  onPressed: () {},
                                 ),
                               )
+
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 30.0),
+                          child: Row(
+                            children: [
+
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: Colors.white,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                                    child: Row(
+                                      children: [
+
+                                        Icon(
+                                          Icons.water_drop_outlined,
+                                          color: Color(0XFF98B3FF),
+                                          size: 50,
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+
+                                            Text("8L",
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0XFFB5C4EC),
+                                                ),
+                                              ),
+                                            ),
+
+                                            Text("Water Intake",
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ),
+
+                                          ],
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(
+                                width: 16,
+                              ),
+
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: Colors.black,
+                                  ),
+                                  child: Text("data2"),
+                                ),
+                              ),
 
                             ],
                           ),
