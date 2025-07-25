@@ -220,6 +220,35 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                   ),
                 ),
 
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Text("Activity Progress",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      ElevatedButton(
+                        //style: ButtonStyle(backgroundColor: Colors.blue[200]),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
+                        ),
+                        onPressed: () {},
+                        child: Text("Weekly",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
               ],
             ),
           ),

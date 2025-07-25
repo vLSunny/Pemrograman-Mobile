@@ -480,7 +480,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                             ],
                           ),
 
-
                         ],
                       ),
                     ),
@@ -516,8 +515,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                                     ),
                                   ),
                                 ),
-
-                                //here
 
                               ],
                             ),
