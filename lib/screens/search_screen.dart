@@ -1,6 +1,11 @@
 import 'package:fitnestx/screens/activity_tracker_screen.dart';
 import 'package:fitnestx/screens/add_alarm_screen.dart';
+import 'package:fitnestx/screens/meal_planner_screen.dart';
+import 'package:fitnestx/screens/meal_schedule_screen.dart';
 import 'package:fitnestx/screens/notifications_screen.dart';
+import 'package:fitnestx/screens/sleep_schedule_screen.dart';
+import 'package:fitnestx/screens/sleep_tracker_screen.dart';
+import 'package:fitnestx/screens/workout_tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -117,19 +122,20 @@ class _SearchScreenState extends State<SearchScreen> {
                         if (tappedTitle == 'Activity Tracker') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => ActivityTrackerScreen()));
                         } else if (tappedTitle == 'Workout Tracker') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutTrackerScreen()));
                         } else if (tappedTitle == 'Sleep Schedule') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SleepScheduleScreen()));
                         } else if (tappedTitle == 'Sleep Tracker') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SleepTrackerScreen()));
                         } else if (tappedTitle == 'Meal Schedule') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MealScheduleScreen()));
                         }
                         //Meal Planner
                         else {
-                          ScaffoldMessenger.of(context).showSnackBar(
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MealPlannerScreen()));
+                          /*ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('$tappedTitle clicked, but no screen found!')),
-                          );
+                          );*/
                         }
                       },
                       child: Container(
