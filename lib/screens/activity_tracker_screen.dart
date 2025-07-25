@@ -32,7 +32,9 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black,),
             ),
           ),
@@ -163,9 +165,49 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
-                                  child: Text("data2"),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                                    child: Row(
+                                      children: [
+
+                                        Icon(
+                                          Icons.sports_gymnastics_rounded,
+                                          color: Color(0XFF98B3FF),
+                                          size: 50,
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+
+                                            Text("2400",
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0XFFB5C4EC),
+                                                ),
+                                              ),
+                                            ),
+
+                                            Text("Foot Steps",
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ),
+
+                                          ],
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
 
