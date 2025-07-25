@@ -249,6 +249,28 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                   ),
                 ),
 
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Text("Latest Workout",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text("See more",
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
               ],
             ),
           ),
