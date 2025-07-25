@@ -14,23 +14,31 @@ class _SearchScreenState extends State<SearchScreen> {
 
   final List<Map<String, dynamic>> gridItems = [
     {
-      'title': 'Dashboard',
-      'icon': Icons.dashboard,
+      'title': 'Activity Tracker',
+      'icon': Icons.local_activity_outlined,
     },
     {
-      'title': 'Profile',
+      'title': '',
       'icon': Icons.person,
     },
     {
-      'title': 'Settings',
+      'title': 'Sleep Schedule',
       'icon': Icons.settings,
     },
     {
-      'title': 'Notifications',
+      'title': 'Sleep Tracker',
       'icon': Icons.notifications,
     },
     {
-      'title': 'Calendar',
+      'title': 'Workout Tracker',
+      'icon': Icons.calendar_today,
+    },
+    {
+      'title': 'Workout Tracker',
+      'icon': Icons.calendar_today,
+    },
+    {
+      'title': 'Meal Schedule',
       'icon': Icons.calendar_today,
     },
     {
