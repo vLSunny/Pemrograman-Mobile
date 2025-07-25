@@ -2,7 +2,6 @@ import 'package:fitnestx/screens/activity_tracker_screen.dart';
 import 'package:fitnestx/screens/add_alarm_screen.dart';
 import 'package:fitnestx/screens/meal_planner_screen.dart';
 import 'package:fitnestx/screens/meal_schedule_screen.dart';
-import 'package:fitnestx/screens/notifications_screen.dart';
 import 'package:fitnestx/screens/sleep_schedule_screen.dart';
 import 'package:fitnestx/screens/sleep_tracker_screen.dart';
 import 'package:fitnestx/screens/workout_tracker_screen.dart';
@@ -130,12 +129,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         } else if (tappedTitle == 'Meal Schedule') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => MealScheduleScreen()));
                         }
-                        //Meal Planner
                         else {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => MealPlannerScreen()));
-                          /*ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('$tappedTitle clicked, but no screen found!')),
-                          );*/
                         }
                       },
                       child: Container(

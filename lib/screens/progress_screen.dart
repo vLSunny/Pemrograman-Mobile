@@ -55,7 +55,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
         ],
       ),
 
-
       body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
