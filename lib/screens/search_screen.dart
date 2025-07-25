@@ -1,3 +1,4 @@
+import 'package:fitnestx/screens/activity_tracker_screen.dart';
 import 'package:fitnestx/screens/add_alarm_screen.dart';
 import 'package:fitnestx/screens/notifications_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,32 +19,24 @@ class _SearchScreenState extends State<SearchScreen> {
       'icon': Icons.local_activity_outlined,
     },
     {
-      'title': '',
-      'icon': Icons.person,
+      'title': 'Workout Tracker',
+      'icon': Icons.work_outline_rounded,
     },
     {
       'title': 'Sleep Schedule',
-      'icon': Icons.settings,
+      'icon': Icons.reset_tv_rounded,
     },
     {
       'title': 'Sleep Tracker',
-      'icon': Icons.notifications,
-    },
-    {
-      'title': 'Workout Tracker',
-      'icon': Icons.calendar_today,
-    },
-    {
-      'title': 'Workout Tracker',
-      'icon': Icons.calendar_today,
+      'icon': Icons.track_changes_rounded,
     },
     {
       'title': 'Meal Schedule',
-      'icon': Icons.calendar_today,
+      'icon': Icons.restaurant,
     },
     {
-      'title': 'Logout',
-      'icon': Icons.logout,
+      'title': 'Meal Planner',
+      'icon': Icons.restaurant_menu_rounded,
     },
   ];
 
@@ -121,17 +114,19 @@ class _SearchScreenState extends State<SearchScreen> {
                       onTap: () {
                         String tappedTitle = item['title'];
 
-                        if (tappedTitle == 'Dashboard') {
+                        if (tappedTitle == 'Activity Tracker') {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ActivityTrackerScreen()));
+                        } else if (tappedTitle == 'Workout Tracker') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
-                        } else if (tappedTitle == 'Profile') {
+                        } else if (tappedTitle == 'Sleep Schedule') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
-                        } else if (tappedTitle == 'Settings') {
+                        } else if (tappedTitle == 'Sleep Tracker') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
-                        } else if (tappedTitle == 'Notifications') {
+                        } else if (tappedTitle == 'Meal Schedule') {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
-                        } else if (tappedTitle == 'Calendar') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));
-                        } else {
+                        }
+                        //Meal Planner
+                        else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('$tappedTitle clicked, but no screen found!')),
                           );
@@ -139,13 +134,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple.shade100,
+                          color: Color(0XFFE9F0FF),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(item['icon'], size: 40, color: Colors.deepPurple),
+                            Icon(item['icon'], size: 40, color: Color(0XFF99B8FF)),
                             SizedBox(height: 10),
                             Text(
                               item['title'],
