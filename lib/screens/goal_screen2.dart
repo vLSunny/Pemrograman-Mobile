@@ -23,7 +23,6 @@ class _GoalScreen2State extends State<GoalScreen2> {
             children: [
               SizedBox(height: 20),
 
-              // Title
               Text(
                 "What is your goal?",
                 style: GoogleFonts.poppins(
@@ -35,7 +34,6 @@ class _GoalScreen2State extends State<GoalScreen2> {
                 ),
               ),
 
-              // Subtitle
               Text(
                 "It will help us to choose a best program for you",
                 style: GoogleFonts.poppins(

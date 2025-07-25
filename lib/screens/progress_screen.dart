@@ -83,7 +83,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
                             ),
                             child: Icon(
                                 Icons.calendar_month_rounded,
-                                //color: Colors.white,
                                 size: 40.0
                             ),
                           ),
@@ -213,7 +212,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                             height: 90,
                             decoration: BoxDecoration(
                               color: Color(0xFFFFF9F9),
-                              borderRadius: BorderRadius.circular(44.0), // Rounded corners
+                              borderRadius: BorderRadius.circular(44.0),
                             ),
                             child: Icon(
                                 Icons.calendar_month_rounded,
@@ -250,7 +249,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                           child: ElevatedButton(
-                            //style: ButtonStyle(backgroundColor: Colors.blue[200]),
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
                             ),

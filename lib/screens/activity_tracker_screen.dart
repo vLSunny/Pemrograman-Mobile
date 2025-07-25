@@ -233,7 +233,6 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                         ),
                       ),
                       ElevatedButton(
-                        //style: ButtonStyle(backgroundColor: Colors.blue[200]),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
                         ),

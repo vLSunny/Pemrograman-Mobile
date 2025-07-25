@@ -183,7 +183,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                         child: ElevatedButton(
-                          //style: ButtonStyle(backgroundColor: Colors.blue[200]),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
                           ),
@@ -575,7 +574,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                       ),
                     ),
                     ElevatedButton(
-                      //style: ButtonStyle(backgroundColor: Colors.blue[200]),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
                       ),
@@ -594,7 +592,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: SizedBox(
-                  height: 300, // <- This is important!
+                  height: 300,
                   child: LineChart(
                     LineChartData(
                       titlesData: FlTitlesData(
@@ -771,7 +769,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    //Second Row
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -882,7 +880,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    //Third Row
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -995,7 +993,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    //Fourth Row
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1108,7 +1106,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     SizedBox(
                       height: 50,
                     ),
-                    //Fifth Row
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
