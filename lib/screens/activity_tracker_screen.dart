@@ -62,30 +62,45 @@ class _ActivityTrackerScreenState extends State<ActivityTrackerScreen> {
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Container(
-                    color: Color(0XFFE9F0FF),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Color(0XFFE9F0FF),
+                    ),
                     child: Column(
                       children: [
 
-                        Row(
-                          children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
 
-                            Text("Activity Tracker",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black
+                              Text("Today Target",
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black
+                                  ),
                                 ),
                               ),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.add,
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,             // Button (background) color
+                                  //shape: BoxShape.rectangle,         // Make it circular
+                                  borderRadius: BorderRadius.circular(16.0),
                                 ),
-                            ),
+                                child: IconButton(
+                                  icon: Icon(Icons.add),
+                                  color: Colors.white,            // Icon color
+                                  onPressed: () {
+                                    // Your logic here
+                                  },
+                                ),
+                              )
 
-                          ],
+                            ],
+                          ),
                         ),
 
                       ],
