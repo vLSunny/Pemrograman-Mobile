@@ -179,10 +179,6 @@ lib/
 
 Contributions are welcome! Feel free to fork the project and open a pull request with enhancements, bug fixes, or new features.
 
-## 📃 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
 ---
 
-> Built with 💙 using Flutter – by \[Arman Gilani]
+> Built with 💙 using Flutter – by \[Rakh]
