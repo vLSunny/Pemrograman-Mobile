@@ -11,7 +11,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -20,37 +19,34 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(backgroundColor: Colors.white),
 
       body: SafeArea(
         child: Column(
           children: [
-
             Form(
               key: _formKey,
               child: Column(
                 children: [
-
                   // Text
-                  Text("Hey there,",
+                  Text(
+                    "Hey there,",
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     textAlign: TextAlign.center,
                   ),
                   // Text
-                  Text("Welcome Back",
+                  Text(
+                    "Welcome",
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -70,10 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         filled: true,
                       ),
                       validator: (value) {
-                        if(value == null || value.isEmpty) {
+                        if (value == null || value.isEmpty) {
                           return "Please enter your email";
                         }
-                        if(!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+").hasMatch(value)) {
+                        if (!RegExp(
+                          r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+",
+                        ).hasMatch(value)) {
                           return "Enter a valid email";
                         }
                         return null;
@@ -99,14 +97,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                           icon: Icon(
-                            _obscureText ? Icons.visibility_off : Icons.visibility,
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                         ),
                         fillColor: Colors.grey[130],
                         filled: true,
                       ),
                       validator: (value) {
-                        if(value == null || value.isEmpty) {
+                        if (value == null || value.isEmpty) {
                           return "Please enter your password";
                         }
                         if (value.length < 6) {
@@ -119,10 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // Forgot Password TextButton
                   Padding(
-                    padding: EdgeInsets.only(left: 10,right: 10, ),
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     child: TextButton(
                       onPressed: () {},
-                      child: Text("Forgot your password?",
+                      child: Text(
+                        "Forgot your password?",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                             fontSize: 15,
@@ -133,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -142,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
             Column(
               children: [
-
                 // Login Button
                 Padding(
                   padding: EdgeInsets.all(10),
@@ -166,11 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => HomeScreen()),
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),
+                            ),
                           );
                         },
-                        icon: Icon(Icons.login,color: Colors.white,),
-                        label: Text("Login",
+                        icon: Icon(Icons.login, color: Colors.white),
+                        label: Text(
+                          "Login",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -180,21 +182,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 Row(
                   children: [
-
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Divider(
-                          color: Colors.grey[110],
-                          thickness: 2,
-                        ),
+                        child: Divider(color: Colors.grey[110], thickness: 2),
                       ),
                     ),
-                    Text("Or",
+                    Text(
+                      "Or",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       textAlign: TextAlign.center,
@@ -202,26 +201,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Divider(
-                          color: Colors.grey[110],
-                          thickness: 2,
-                        ),
+                        child: Divider(color: Colors.grey[110], thickness: 2),
                       ),
                     ),
-
                   ],
                 ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
                     // Email IconButton
                     Padding(
                       padding: EdgeInsets.only(right: 10),
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Icon(Icons.email,),
+                        child: Icon(Icons.email),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.grey[130],
                           shape: RoundedRectangleBorder(
@@ -235,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.only(left: 10),
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Icon(Icons.facebook,),
+                        child: Icon(Icons.facebook),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.grey[130],
                           shape: RoundedRectangleBorder(
@@ -244,7 +238,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
 
@@ -254,11 +247,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     //Text
                     Padding(
                       padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                      child: Text("Don't have an account yet? ",
+                      child: Text(
+                        "Don't have an account yet? ",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -267,34 +261,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: EdgeInsets.only(right: 10, top: 10, bottom: 10),
                       child: InkWell(
-                        child: Text("Register",
+                        child: Text(
+                          "Register",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.purpleAccent
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purpleAccent,
                             ),
                           ),
                         ),
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => RegistrationScreen(),));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegistrationScreen(),
+                            ),
+                          );
                         },
                       ),
                     ),
                   ],
                 ),
-
               ],
             ),
-
           ],
         ),
       ),
 
       backgroundColor: Colors.white,
-
     );
   }
 }

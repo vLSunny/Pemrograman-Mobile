@@ -1,18 +1,28 @@
 import 'package:fitnestx/screens/notifications_screen.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:fitnestx/screens/air_quality_screen.dart';
+import 'package:fitnestx/widgets/todo_list_tab_updated.dart';
+import 'package:fitnestx/widgets/bmi_tab.dart';
+import 'package:fitnestx/widgets/water_tracking_modal.dart';
+import 'package:fitnestx/widgets/water_intake_chart.dart';
+import 'package:fitnestx/widgets/sleep_tracking_modal.dart';
+import 'package:fitnestx/widgets/calories_tracking_modal.dart';
+import 'package:fitnestx/widgets/sleep_tracking_chart.dart';
+import 'package:fitnestx/widgets/calories_tracking_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import '../services/water_service.dart';
+import '../services/sleep_service.dart';
+import '../services/calories_service.dart';
 
 class HomeContentScreen extends StatefulWidget {
-  const HomeContentScreen({super.key});
+  final String userName;
+  const HomeContentScreen({super.key, this.userName = 'User'});
 
   @override
   State<HomeContentScreen> createState() => _HomeContentScreenState();
 }
 
 class _HomeContentScreenState extends State<HomeContentScreen> {
-
   List<Map<String, double>> chartData = [
     {'x': 0, 'y': 75},
     {'x': 1, 'y': 78},
@@ -24,16 +34,111 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    // Listen to water updates
+    WaterService.waterUpdates.listen((_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  Widget _buildOverallProgress() {
+    double waterProgress = (WaterService.getTodayTotal() / 2.5) * 100;
+    double sleepProgress = (SleepService.getTodayTotal() / 8.0) * 100;
+    double caloriesProgress = (CaloriesService.getTodayTotal() / 2000.0) * 100;
+
+    waterProgress = waterProgress.clamp(0, 100);
+    sleepProgress = sleepProgress.clamp(0, 100);
+    caloriesProgress = caloriesProgress.clamp(0, 100);
+
+    double overallProgress =
+        (waterProgress + sleepProgress + caloriesProgress) / 3;
+
+    Color progressColor;
+    if (overallProgress >= 80) {
+      progressColor = Colors.green;
+    } else if (overallProgress >= 50) {
+      progressColor = Colors.orange;
+    } else {
+      progressColor = Colors.red;
+    }
+
+    return Column(
+      children: [
+        Text(
+          'Overall Daily Progress',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+            color: Colors.black87,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          '${overallProgress.toStringAsFixed(0)}%',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: progressColor,
+          ),
+        ),
+        SizedBox(height: 8),
+        Container(
+          width: 220,
+          height: 10,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: FractionallySizedBox(
+            alignment: Alignment.centerLeft,
+            widthFactor: overallProgress / 100,
+            child: Container(
+              decoration: BoxDecoration(
+                color: progressColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Color> _getProgressGradientColors() {
+    double waterProgress = (WaterService.getTodayTotal() / 2.5) * 100;
+    double sleepProgress = (SleepService.getTodayTotal() / 8.0) * 100;
+    double caloriesProgress = (CaloriesService.getTodayTotal() / 2000.0) * 100;
+
+    waterProgress = waterProgress.clamp(0, 100);
+    sleepProgress = sleepProgress.clamp(0, 100);
+    caloriesProgress = caloriesProgress.clamp(0, 100);
+
+    double overallProgress =
+        (waterProgress + sleepProgress + caloriesProgress) / 3;
+
+    if (overallProgress >= 80) {
+      return [Colors.white, Colors.green.shade100, Colors.green.shade200];
+    } else if (overallProgress >= 50) {
+      return [Colors.white, Colors.orange.shade100, Colors.orange.shade200];
+    } else {
+      return [Colors.white, Colors.red.shade100, Colors.red.shade200];
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Welcome Back,",
+            Text(
+              "Welcome Back,",
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                   fontSize: 15,
@@ -42,12 +147,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ),
               ),
             ),
-            Text("Stefani Wong",
+            Text(
+              widget.userName,
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -79,14 +185,12 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             ),
           ),
         ],
-
       ),
 
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-
               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Container(
@@ -95,118 +199,64 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     color: Colors.blue[200],
                   ),
                   width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            Text("BMI (Body Mass Index)",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text("You have a normal weight",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                backgroundColor: Colors.pink[200],
-                              ),
-                              onPressed: () {},
-                              child: Text("View More",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                backgroundColor: Colors.pink[200],
-                              ),
-                              onPressed: () {},
-                              child: Text("View More",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      
-                    ],
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Container(
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFE9F0FF),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: Text("Today's Target",
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "BMI (Body Mass Index)",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
-                          ),
-                          onPressed: () {},
-                            child: Text("Check",
+                        SizedBox(height: 5),
+                        Text(
+                          "You have a normal weight",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                        SizedBox(height: 15),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              backgroundColor: Colors.pink[200],
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 8,
+                              ),
+                              minimumSize: Size(100, 30),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => BMITab(
+                                        height:
+                                            170.0, // Will be updated with user data
+                                        weight:
+                                            65.0, // Will be updated with user data
+                                      ),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "View More",
                               style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 14,
                               ),
                             ),
+                          ),
                         ),
-                      ),
-
-                    ],
-                  ),
-                ),
-              ),
-
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
-                  child: Text("Activity Status",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      ],
                     ),
                   ),
                 ),
@@ -215,1023 +265,543 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Container(
-                  height: 200,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Color(0xFFE9F0FF),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 30, 0, 0),
-                        child: Text("Heart Rate",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
-                        child: Text("78 BPM",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFFA7B9F7),
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: 100,
-                        child: SfCartesianChart(
-                          backgroundColor: Colors.transparent,
-                          plotAreaBorderWidth: 0,
-                          primaryXAxis: NumericAxis(isVisible: false),
-                          primaryYAxis: NumericAxis(isVisible: false),
-                          margin: EdgeInsets.zero,
-                          series: <FastLineSeries<Map<String, double>, double>>[
-                            FastLineSeries<Map<String, double>, double>(
-                              dataSource: chartData,
-                              xValueMapper: (data, _) => data['x']!,
-                              yValueMapper: (data, _) => data['y']!,
-                              color: Colors.purpleAccent,
-                              width: 2,
-                              markerSettings: MarkerSettings(isVisible: false),
+                  child: Padding(
+                    padding: EdgeInsets.all(30.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Today's Target",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            Icon(
+                              Icons.check_circle_outline,
+                              color: Color(0xFFA7B9F7),
+                              size: 28,
                             ),
                           ],
                         ),
-                      ),
-
-                    ],
+                        SizedBox(height: 20),
+                        Container(height: 400, child: TodoListTabUpdated()),
+                      ],
+                    ),
                   ),
                 ),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-
-                  Material(
-                    elevation: 0.5,
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
+              // Air Quality Button
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AirQualityScreen(),
                       ),
+                    );
+                  },
+                  child: Container(
+                    height: 120,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF4CAF50), Color(0xFF81C784)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
-                          Column(
-                            children: [
-
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                                child: Container(
-                                  width: 35,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFf8f8f8),
-                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                                child: Container(
-                                  width: 35,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [Color(0xFFb9adfa), Color(0xFFb4befd)],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20),),
-                                  ),
-                                ),
-                              ),
-
-                            ],
-                          ),
-
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
-                              Text("Water Intake",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5),
-                                child: Text("4 Liters",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFA7B9F7),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 10, right: 10),
-                                child: Text("Real time updates"),
-                              ),
-
                               Row(
                                 children: [
-
-                                  Column(
-                                    children: [
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20, right: 20),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          width: 10,
-                                          height: 10,
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 40, right: 20),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          width: 10,
-                                          height: 10,
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 50, right: 20),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          width: 10,
-                                          height: 10,
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 50, right: 20),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          width: 10,
-                                          height: 10,
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 60, right: 20),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          width: 10,
-                                          height: 10,
-                                        ),
-                                      ),
-
-                                    ],
+                                  Icon(
+                                    Icons.air,
+                                    color: Colors.white,
+                                    size: 24,
                                   ),
-                                  Column(
-                                    children: [
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("6am - 8am"),
-                                            Text("600ml"),
-                                          ],
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("9am - 11am"),
-                                            Text("500ml"),
-                                          ],
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("11am - 2pm"),
-                                            Text("1000ml"),
-                                          ],
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("2pm - 4pm"),
-                                            Text("700ml"),
-                                          ],
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("4pm - now"),
-                                            Text("900ml"),
-                                          ],
-                                        ),
-                                      ),
-
-                                    ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Air Quality",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
-
                                 ],
                               ),
-
+                              SizedBox(height: 5),
+                              Text(
+                                "Check real-time air quality",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white.withOpacity(0.9),
+                                ),
+                              ),
                             ],
                           ),
-
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
+                ),
+              ),
 
-                  Column(
-                    children: [
-
-                      Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Card(
-                          elevation: 1,
-                          color: Colors.white,
+              // Three horizontal tracking tabs
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // Water Intake Tab
+                    Expanded(
+                      child: Material(
+                        elevation: 2,
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blue.withOpacity(0.1),
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            padding: EdgeInsets.all(15.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
-                                Text("Sleep",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10),
-                                  child: Text("8h 20m",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFA7B9F7),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Water Intake",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.blue[800],
+                                      ),
                                     ),
+                                    ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xFF98B3FF),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                        ),
+                                        minimumSize: Size(0, 0),
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          builder: (context) {
+                                            return Container(
+                                              height:
+                                                  MediaQuery.of(
+                                                    context,
+                                                  ).size.height *
+                                                  0.8,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                      top: Radius.circular(25),
+                                                    ),
+                                              ),
+                                              child: WaterTrackingModal(),
+                                            );
+                                          },
+                                        ).then((_) {
+                                          setState(() {});
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.water_drop,
+                                        size: 14,
+                                        color: Colors.white,
+                                      ),
+                                      label: Text(
+                                        'Add',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  "${WaterService.getTodayTotal().toStringAsFixed(1)} Liters",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF2196F3),
                                   ),
                                 ),
-
+                                SizedBox(height: 4),
+                                Text(
+                                  "Real time updates",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                Container(
+                                  height: 80,
+                                  child: WaterIntakeChart(),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
-
-                      Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Card(
-                          elevation: 1,
-                          color: Colors.white,
+                    ),
+                    SizedBox(width: 10),
+                    // Sleep Tab
+                    Expanded(
+                      child: Material(
+                        elevation: 2,
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.purple.withOpacity(0.1),
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            padding: EdgeInsets.all(15.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
-                                Text("Calories",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10),
-                                  child: Text("760 kCal",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFA7B9F7),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Sleep",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.purple[800],
+                                      ),
                                     ),
+                                    ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xFFD1C4E9),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                        ),
+                                        minimumSize: Size(0, 0),
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          builder: (context) {
+                                            return Container(
+                                              height:
+                                                  MediaQuery.of(
+                                                    context,
+                                                  ).size.height *
+                                                  0.8,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                      top: Radius.circular(25),
+                                                    ),
+                                              ),
+                                              child: SleepTrackingModal(),
+                                            );
+                                          },
+                                        ).then((_) {
+                                          setState(() {});
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.bedtime,
+                                        size: 14,
+                                        color: Colors.white,
+                                      ),
+                                      label: Text(
+                                        'Add',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  "${SleepService.getTodayTotal().toStringAsFixed(1)} Hours",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF9C27B0),
                                   ),
                                 ),
-
+                                SizedBox(height: 4),
+                                Text(
+                                  "Real time updates",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                Container(
+                                  height: 80,
+                                  child: SleepTrackingChart(),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(width: 10),
+                    // Calories Tab
+                    Expanded(
+                      child: Material(
+                        elevation: 2,
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.orange.withOpacity(0.1),
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Calories",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.orange[800],
+                                      ),
+                                    ),
+                                    ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xFFFFCC80),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                        ),
+                                        minimumSize: Size(0, 0),
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          builder: (context) {
+                                            return Container(
+                                              height:
+                                                  MediaQuery.of(
+                                                    context,
+                                                  ).size.height *
+                                                  0.8,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                      top: Radius.circular(25),
+                                                    ),
+                                              ),
+                                              child: CaloriesTrackingModal(),
+                                            );
+                                          },
+                                        ).then((_) {
+                                          setState(() {});
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.local_fire_department,
+                                        size: 14,
+                                        color: Colors.white,
+                                      ),
+                                      label: Text(
+                                        'Add',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  "${CaloriesService.getTodayTotal().toStringAsFixed(0)} kcal",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFFF9800),
+                                  ),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  "Real time updates",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                SizedBox(height: 12),
+                                Container(
+                                  height: 80,
+                                  child: CaloriesTrackingChart(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
+              // Overall Progress Calculator
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    gradient: LinearGradient(
+                      colors: _getProgressGradientColors(),
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
+                      ),
                     ],
                   ),
-
-                ],
-              ),
-
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                    Text("Workout Progress",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
-                      ),
-                      onPressed: () {},
-                      child: Text("Check",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                child: SizedBox(
-                  height: 300,
-                  child: LineChart(
-                    LineChartData(
-                      titlesData: FlTitlesData(
-                        leftTitles: AxisTitles(
-                          sideTitles: SideTitles(showTitles: true),
-                        ),
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            interval: 1,
-                            getTitlesWidget: (value, meta) => Text(value.toInt().toString()),
+                  child: Padding(
+                    padding: EdgeInsets.all(25.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Overall Daily Progress",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black87,
                           ),
                         ),
-                      ),
-                      borderData: FlBorderData(
-                        show: true,
-                        border: Border.all(color: Colors.grey, width: 1),
-                      ),
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: [
-                            FlSpot(0, 3),
-                            FlSpot(1, 1),
-                            FlSpot(2, 4),
-                            FlSpot(3, 2),
-                            FlSpot(4, 5),
-                          ],
-                          isCurved: true,
-                          color: Colors.blue,
-                          barWidth: 3,
-                          dotData: FlDotData(show: true),
-                          belowBarData: BarAreaData(
-                            show: true,
-                            color: Colors.blue.withOpacity(0.2),
-                          ),
-                        ),
+                        SizedBox(height: 15),
+                        _buildOverallProgress(),
                       ],
                     ),
                   ),
                 ),
               ),
-
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                    Text("Latest Workout",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text("See more"),
-
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                child: Column(
-                  children: [
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                              ),
-                              child: Image(
-                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                  Text("Fullbody Workout",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-
-                                      Text("180 Calories Burn",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700],
-                                        ),
-                                      ),
-                                      Text(" | ",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text("20 minutes",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-
-                                      Container(
-                                        width: 75,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue,
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 135,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD1D9F6),
-                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.pinkAccent
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.pinkAccent
-                          ),
-                        ),
-
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 50,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                              ),
-                              child: Image(
-                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage2.png"),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                  Text("Lowerbody Workout",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-
-                                      Text("200 Calories Burn",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text(" | ",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text("30 minutes",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-
-                                      Container(
-                                        width: 125,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          //color: Color(0xFFf8f8f8),
-                                          color: Colors.blue,
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 80,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD1D9F6),
-                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.pinkAccent
-                            ),
-                          ),
-                          child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.pinkAccent
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 50,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                              ),
-                              child: Image(
-                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                  Text("Abbs Workout",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-
-                                      Text("190 Calories Burn",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text(" | ",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text("25 minutes",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-
-                                      Container(
-                                        width: 75,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          //color: Color(0xFFf8f8f8),
-                                          color: Colors.blue,
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 135,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD1D9F6),
-                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.pinkAccent
-                            ),
-                          ),
-                          child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.pinkAccent
-                          ),
-                        ),
-
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 50,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                              ),
-                              child: Image(
-                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                  Text("Legs Workout",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-
-                                      Text("150 Calories Burn",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text(" | ",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text("15 minutes",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-
-                                      Container(
-                                        width: 105,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          //color: Color(0xFFf8f8f8),
-                                          color: Colors.blue,
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 105,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD1D9F6),
-                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.pinkAccent
-                            ),
-                          ),
-                          child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.pinkAccent
-                          ),
-                        ),
-
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 50,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Row(
-                          children: [
-
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                              ),
-                              child: Image(
-                                image: AssetImage("assets/images/HomeContentScreenWorkOutImage1.png"),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                  Text("Hands Workout",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-
-                                      Text("110 Calories Burn",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text(" | ",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-                                      Text("10 minutes",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[700]
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-
-                                      Container(
-                                        width: 55,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          //color: Color(0xFFf8f8f8),
-                                          color: Colors.blue,
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 155,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD1D9F6),
-                                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.pinkAccent
-                            ),
-                          ),
-                          child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.pinkAccent
-                          ),
-                        ),
-
-                      ],
-                    ),
-
-                  ],
-                ),
-              ),
-
-              Container(
-                width: double.infinity,
-                height: 100,
-              ),
-
             ],
           ),
         ),
       ),
-
       backgroundColor: Colors.white,
-
     );
   }
 }

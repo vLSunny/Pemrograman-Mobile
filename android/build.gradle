@@ -1,0 +1,58 @@
+buildscript {
+    ext.kotlin_version = '2.0.21'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    // Fix for fitness package namespace issue and Kotlin version conflict
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty('android')) {
+                // Ensure namespace is set for all Android subprojects
+                if (!project.android.hasProperty('namespace') || !project.android.namespace) {
+                    def packageName = project.android.defaultConfig?.applicationId ?: 
+                                    project.android.defaultConfig?.applicationIdFallback ?: 
+                                    "com.fitness.plugin.${project.name}"
+                    project.android.namespace = packageName
+                }
+                
+                // Force Kotlin version for all subprojects
+                configurations.all {
+                    resolutionStrategy {
+                        force "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21"
+                        force "org.jetbrains.kotlin:kotlin-stdlib:2.0.21"
+                    }
+                }
+                
+                // Fix manifest package attribute issues
+                if (project.android.hasProperty('sourceSets')) {
+                    project.android.sourceSets.main.manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

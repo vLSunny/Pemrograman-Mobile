@@ -1,6 +1,8 @@
-import 'package:fitnestx/screens/splash_screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'user_first_form_screen.dart';
+import 'home_content_screen.dart';
+import '../services/user_storage_service.dart';
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
@@ -11,119 +13,54 @@ class SplashScreen1 extends StatefulWidget {
 
 class _SplashScreen1State extends State<SplashScreen1> {
   @override
+  void initState() {
+    super.initState();
+    _navigateToNextScreen();
+  }
+
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
+
+    // Check if user has already set up profile using UserStorageService
+    final hasProfile = await UserStorageService.hasUserProfile();
+
+    if (hasProfile) {
+      // User has already set up profile, go to home
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeContentScreen()),
+      );
+    } else {
+      // First time user, go to form screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const UserFirstFormScreen()),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-
-        //Background color code
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'FitnestX',
+              style: GoogleFonts.poppins(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF92A3FD),
+              ),
             ),
-          ),
+            const SizedBox(height: 20),
+            const CircularProgressIndicator(),
+          ],
         ),
-
-        SafeArea(
-          child: Scaffold(
-
-            backgroundColor: Colors.transparent,
-
-            //Main Content code (Text and Button)
-            body: Column(
-              children: [
-
-                Spacer(),
-                Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      // Text
-                      Text("Fitnest",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black
-                          ),
-                        ),
-                      ),
-                      // Text
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 15.0),
-                        child: Text("X",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 55,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            ),
-                          ),
-                        ),
-                      ),
-
-                    ],
-                  ),
-                ),
-                // Text
-                Align(
-                  alignment: Alignment.center,
-                  child: Text("Everybody Can Train",
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400
-                      ),
-                    ),
-                  ),
-                ),
-                Spacer(),
-
-                // Get Started
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-                  child: SizedBox(
-                    height: 55,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SplashScreen2(),
-                          ),
-                        );
-                      },
-                      child: ShaderMask(
-                        shaderCallback: (bounds) => LinearGradient(
-                          colors: [Color(0xFF97B3FE), Color(0xFF9AC2FF)],
-                        ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height),),
-                        child: Text("Get Started",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-              ],
-            ),
-
-          ),
-        ),
-
-      ],
+      ),
     );
   }
 }

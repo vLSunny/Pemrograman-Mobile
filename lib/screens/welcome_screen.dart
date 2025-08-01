@@ -13,57 +13,58 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(backgroundColor: Colors.white),
 
       body: SafeArea(
         child: Column(
           children: [
-
             // Image
             Expanded(
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 250,
                       height: 250,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: Image(image: AssetImage("assets/images/welcomeimage.png"),
+                        child: Image(
+                          image: AssetImage("assets/images/welcomeimage.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(height: 30),
                     // Text
-                    Text("Welcome, Stefani",
+                    Text(
+                      "Welcome",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                     // Text
-                    Text("You are all set now, let's reach your",
+                    Text(
+                      "You are all set now, let's reach your",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
                     // Text
-                    Text("goals together with us",
+                    Text(
+                      "goals together with us",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -113,7 +114,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                 ),
-
               ),
             ),
           ],
@@ -121,7 +121,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
 
       backgroundColor: Colors.white,
-
     );
   }
 }
