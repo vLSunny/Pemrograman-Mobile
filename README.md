@@ -77,9 +77,6 @@ The following UI/UX screens have been fully implemented in Flutter based on the 
 
 ## 🎨 Referensi Open-Source dan Inspirasi
 
-### 🖼️ Design Template
-- **[Fitness Free App UI Kit for Figma](https://www.uistore.design/items/fitness-free-app-ui-kit-for-figma/)** - Template desain UI/UX utama yang menjadi basis visual aplikasi
-
 ### 📚 Flutter Resources
 - **[Flutter Official Documentation](https://flutter.dev/docs)** - Dokumentasi resmi Flutter
 - **[Material Design Guidelines](https://material.io/design)** - Panduan desain Material Design
