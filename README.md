@@ -77,13 +77,10 @@ The following UI/UX screens have been fully implemented in Flutter based on the 
 
 ## 🎨 Referensi Open-Source dan Inspirasi
 
-### 🖼️ Design Template
-- **[Fitness Free App UI Kit for Figma](https://www.uistore.design/items/fitness-free-app-ui-kit-for-figma/)** - Template desain UI/UX utama yang menjadi basis visual aplikasi
-
 ### 📚 Flutter Resources
-- **[Flutter Official Documentation](https://flutter.dev/docs)** - Dokumentasi resmi Flutter
-- **[Material Design Guidelines](https://material.io/design)** - Panduan desain Material Design
-- **[Dart Language Tour](https://dart.dev/guides/language/language-tour)** - Referensi bahasa pemrograman Dart
+- **[Applikasi FitnesX](https://github.com/Arman-Gilani/fitnestx)** - Aplikasi FitnesX
+- **[Energize](https://codeberg.org/epinez/energize)** - Aplikasi Energize
+- **[Fitbook](https://github.com/brandonp2412/fitbook)** - Aplikasi Fitbook
 
 ### 🛠️ Plugin & Package References
 - **[FL Chart Examples](https://github.com/imaNNeoFighT/fl_chart)** - Inspirasi implementasi chart dan grafik
