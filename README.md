@@ -1,4 +1,4 @@
-# 🏋️‍♂️ My Fit LifeStyle+ (FitnestX) - Flutter Fitness App
+# 🏋️‍♂️ My Fit LifeStyle+ - Flutter Fitness App
 
 **My Fit LifeStyle+** adalah aplikasi fitness modern yang dibangun dengan Flutter, menghadirkan antarmuka yang elegan dan fungsional untuk pelacakan kebugaran komprehensif. Aplikasi ini menggabungkan desain UI yang indah dari **Fitness App UI Kit for Figma** dengan fungsionalitas lengkap untuk tracking workout, nutrisi, tidur, dan progress kesehatan pengguna.
 
