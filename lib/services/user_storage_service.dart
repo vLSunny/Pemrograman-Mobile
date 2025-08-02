@@ -5,21 +5,22 @@ import '../models/user_model.dart';
 
 class UserStorageService {
   static const String _currentUserKey = 'current_user';
-  static const String _usersKey = 'users';
+  static const String _isRegisteredKey = 'is_user_registered';
 
-  // Save user profile
-  static Future<void> saveUserProfile(UserProfileModel user) async {
+  // Save user profile (new registration system)
+  static Future<void> saveUser(UserModel user) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_currentUserKey, jsonEncode(user.toJson()));
+    await prefs.setBool(_isRegisteredKey, true);
   }
 
-  // Get current user profile
-  static Future<UserProfileModel?> getUserProfile() async {
+  // Get current user
+  static Future<UserModel?> getCurrentUser() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final userJson = prefs.getString(_currentUserKey);
       if (userJson != null) {
-        return UserProfileModel.fromJson(jsonDecode(userJson));
+        return UserModel.fromJson(jsonDecode(userJson));
       }
       return null;
     } catch (e) {
@@ -27,76 +28,86 @@ class UserStorageService {
     }
   }
 
-  // Check if user profile exists
-  static Future<bool> hasUserProfile() async {
+  // Check if user is registered
+  static Future<bool> isUserRegistered() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey(_currentUserKey);
+    return prefs.getBool(_isRegisteredKey) ?? false;
   }
 
   // Update user profile
-  static Future<void> updateUserProfile(UserProfileModel user) async {
-    await saveUserProfile(user);
+  static Future<void> updateUser(UserModel user) async {
+    await saveUser(user);
   }
 
-  // Clear user profile
-  static Future<void> clearUserProfile() async {
+  // Clear user data (for reset/logout)
+  static Future<void> clearUserData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_currentUserKey);
+    await prefs.remove(_isRegisteredKey);
   }
 
-  // User authentication methods
-  static Future<bool> loginUser(String email, String password) async {
-    final users = await getAllUsers();
-    return users.any(
-      (user) => user.email == email && user.password == password,
-    );
-  }
-
-  static Future<bool> registerUser(UserModel user) async {
-    final users = await getAllUsers();
-    if (users.any((u) => u.email == user.email)) {
-      return false; // User already exists
-    }
-    users.add(user);
-    await _saveUsers(users);
-    return true;
-  }
-
-  static Future<UserModel?> getCurrentUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    final email = prefs.getString('current_user_email');
-    if (email != null) {
-      final users = await getAllUsers();
-      return users.firstWhere((user) => user.email == email);
-    }
-    return null;
-  }
-
+  // Add logoutUser method for compatibility
   static Future<void> logoutUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('current_user_email');
+    await clearUserData();
   }
 
-  static Future<List<UserModel>> getAllUsers() async {
-    final prefs = await SharedPreferences.getInstance();
-    final usersJson = prefs.getString(_usersKey);
-    if (usersJson != null) {
-      final List<dynamic> decoded = jsonDecode(usersJson);
-      return decoded.map((json) => UserModel.fromJson(json)).toList();
+  // Legacy methods for compatibility with existing code
+  static Future<UserProfileModel?> getUserProfile() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final userJson = prefs.getString(_currentUserKey);
+      if (userJson != null) {
+        // Try to convert UserModel to UserProfileModel for compatibility
+        final user = UserModel.fromJson(jsonDecode(userJson));
+        return UserProfileModel(
+          id: user.id,
+          email: '', // Not used in new system
+          password: '', // Not used in new system
+          name: user.name,
+          age: user.age,
+          height: user.height,
+          weight: user.weight,
+          dateOfBirth: DateTime.now().subtract(
+            Duration(days: user.age * 365),
+          ), // Approximate
+          gender: user.gender,
+          healthInfo: '', // Not used in new system
+          phone: '', // Not used in new system
+        );
+      }
+      return null;
+    } catch (e) {
+      return null;
     }
-    return [];
   }
 
-  static Future<void> _saveUsers(List<UserModel> users) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-      _usersKey,
-      jsonEncode(users.map((u) => u.toJson()).toList()),
+  static Future<bool> hasUserProfile() async {
+    return await isUserRegistered();
+  }
+
+  static Future<void> saveUserProfile(UserProfileModel userProfile) async {
+    // Convert UserProfileModel to UserModel for new system
+    final user = UserModel(
+      id:
+          userProfile.id.isNotEmpty
+              ? userProfile.id
+              : DateTime.now().millisecondsSinceEpoch.toString(),
+      name: userProfile.name,
+      age: userProfile.age,
+      height: userProfile.height,
+      weight: userProfile.weight,
+      gender: userProfile.gender,
+      activityLevel: 'Sedang', // Default value
+      fitnessGoal: 'Mempertahankan Berat Badan', // Default value
     );
+    await saveUser(user);
   }
 
-  static Future<bool> hasAnyUser() async {
-    final users = await getAllUsers();
-    return users.isNotEmpty;
+  static Future<void> updateUserProfile(UserProfileModel userProfile) async {
+    await saveUserProfile(userProfile);
+  }
+
+  static Future<void> clearUserProfile() async {
+    await clearUserData();
   }
 }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_settings_provider.dart';
+import '../services/user_storage_service.dart';
+import '../models/user_model.dart';
+import '../screens/user_registration_screen.dart';
 import 'personal_information_screen.dart';
 import 'workout_preferences_screen.dart';
 import 'notification_settings_screen.dart';
@@ -41,17 +44,19 @@ class _ProfileScreenState extends State<ProfileScreen>
   bool _sleepReminders = true;
   bool _isDarkMode = false;
 
-  TextEditingController _nameController = TextEditingController(text: "Rakha");
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _bioController = TextEditingController(
     text: "Fitness enthusiast 💪",
   );
-  TextEditingController _heightController = TextEditingController(text: "180");
-  TextEditingController _weightController = TextEditingController(text: "65");
-  TextEditingController _ageController = TextEditingController(text: "22");
+  TextEditingController _heightController = TextEditingController();
+  TextEditingController _weightController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
 
   double _profileCompletion = 0.75;
   String _fitnessLevel = "Intermediate";
   double _bmi = 20.1;
+  UserModel? _currentUser;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -75,9 +80,66 @@ class _ProfileScreenState extends State<ProfileScreen>
       CurvedAnimation(parent: _fabController, curve: Curves.elasticOut),
     );
 
+    _loadUserData();
     _animationController.forward();
     _fabController.forward();
-    _calculateBMI();
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      final user = await UserStorageService.getCurrentUser();
+      if (user != null) {
+        setState(() {
+          _currentUser = user;
+          _nameController.text = user.name;
+          _heightController.text = user.height.toString();
+          _weightController.text = user.weight.toString();
+          _ageController.text = user.age.toString();
+          _fitnessLevel = user.fitnessGoal;
+          _isLoading = false;
+        });
+        _calculateBMI();
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _updateUserData() async {
+    if (_currentUser != null) {
+      final updatedUser = UserModel(
+        id: _currentUser!.id,
+        name: _nameController.text,
+        age: int.tryParse(_ageController.text) ?? _currentUser!.age,
+        height: double.tryParse(_heightController.text) ?? _currentUser!.height,
+        weight: double.tryParse(_weightController.text) ?? _currentUser!.weight,
+        gender: _currentUser!.gender,
+        activityLevel: _currentUser!.activityLevel,
+        fitnessGoal: _fitnessLevel,
+      );
+
+      await UserStorageService.saveUser(updatedUser);
+      setState(() {
+        _currentUser = updatedUser;
+      });
+    }
+  }
+
+  Future<void> _logout() async {
+    await UserStorageService.clearUserData();
+    if (mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const UserRegistrationScreen()),
+        (route) => false,
+      );
+    }
   }
 
   @override
@@ -93,11 +155,13 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void _calculateBMI() {
-    double height = double.tryParse(_heightController.text) ?? 180;
-    double weight = double.tryParse(_weightController.text) ?? 65;
-    setState(() {
-      _bmi = weight / ((height / 100) * (height / 100));
-    });
+    if (_currentUser != null) {
+      double height = _currentUser!.height;
+      double weight = _currentUser!.weight;
+      setState(() {
+        _bmi = weight / ((height / 100) * (height / 100));
+      });
+    }
   }
 
   Color _getBMIColor() {
@@ -117,6 +181,76 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     final appSettings = Provider.of<AppSettingsProvider>(context);
+
+    if (_isLoading) {
+      return Scaffold(
+        backgroundColor:
+            appSettings.themeMode == ThemeMode.dark
+                ? Colors.grey[900]
+                : Colors.grey[50],
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_currentUser == null) {
+      return Scaffold(
+        backgroundColor:
+            appSettings.themeMode == ThemeMode.dark
+                ? Colors.grey[900]
+                : Colors.grey[50],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.person_off, size: 80, color: Colors.grey[400]),
+              const SizedBox(height: 20),
+              Text(
+                "No User Data Found",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[600],
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Please complete your registration first",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: Colors.grey[500],
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserRegistrationScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 15,
+                  ),
+                ),
+                child: Text(
+                  "Complete Registration",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor:
           appSettings.themeMode == ThemeMode.dark
@@ -146,6 +280,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         _buildHealthMetrics(),
                         _buildPrivacySection(),
                         _buildSupportSection(),
+                        _buildLogoutSection(),
                         const SizedBox(height: 100),
                       ],
                     ),
@@ -189,11 +324,6 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
         ),
       ),
-      leading: _buildAppBarButton(Icons.arrow_back_ios_new_rounded, () {}),
-      actions: [
-        _buildAppBarButton(Icons.share_rounded, () {}),
-        _buildAppBarButton(Icons.more_vert_rounded, () {}),
-      ],
     );
   }
 
@@ -670,6 +800,134 @@ class _ProfileScreenState extends State<ProfileScreen>
               fontSize: 12,
               color: color,
               fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLogoutSection() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+        color: _isDarkMode ? Colors.grey[850] : Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              "Account Actions",
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: _isDarkMode ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder:
+                    (context) => AlertDialog(
+                      backgroundColor:
+                          _isDarkMode ? Colors.grey[850] : Colors.white,
+                      title: Text(
+                        "Logout",
+                        style: TextStyle(
+                          color: _isDarkMode ? Colors.white : Colors.black,
+                        ),
+                      ),
+                      content: Text(
+                        "Are you sure you want to logout? You'll need to register again to access the app.",
+                        style: TextStyle(
+                          color:
+                              _isDarkMode ? Colors.grey[300] : Colors.grey[600],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Cancel"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _logout();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                          ),
+                          child: const Text(
+                            "Logout",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+              );
+            },
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Logout",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.red,
+                          ),
+                        ),
+                        Text(
+                          "Sign out from your account",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color:
+                                _isDarkMode
+                                    ? Colors.grey[400]
+                                    : Colors.grey[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.red,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -1258,7 +1516,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                 child: const Text("Cancel"),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  await _updateUserData();
                   setState(() {
                     _calculateBMI();
                   });

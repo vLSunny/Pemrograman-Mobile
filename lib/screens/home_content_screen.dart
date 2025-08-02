@@ -10,6 +10,7 @@ import 'package:fitnestx/widgets/sleep_tracking_chart.dart';
 import 'package:fitnestx/widgets/calories_tracking_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/user_info_widget.dart';
 import '../services/water_service.dart';
 import '../services/sleep_service.dart';
 import '../services/calories_service.dart';
@@ -134,57 +135,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome Back,",
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Text(
-              widget.userName,
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: InkWell(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  Icons.notification_important,
-                  color: Colors.black,
-                  size: 40.0,
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NotificationsScreen(),
-                  ),
-                );
-              },
-            ),
+        title: const UserGreetingWidget(
+          textStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
-        ],
+        ),
       ),
 
       body: SafeArea(
@@ -388,372 +345,474 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ),
               ),
 
-              // Three horizontal tracking tabs
+              // Three horizontal tracking tabs - Mobile Responsive
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Water Intake Tab
-                    Expanded(
-                      child: Material(
-                        elevation: 2,
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(18)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.blue.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                offset: Offset(0, 2),
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final screenWidth = MediaQuery.of(context).size.width;
+                    final isSmallScreen = screenWidth < 400;
+                    final cardPadding = isSmallScreen ? 8.0 : 12.0;
+                    final titleFontSize = isSmallScreen ? 12.0 : 14.0;
+                    final valueFontSize = isSmallScreen ? 14.0 : 16.0;
+                    final buttonPadding = isSmallScreen ? 4.0 : 6.0;
+                    final chartHeight = isSmallScreen ? 60.0 : 70.0;
+
+                    return Row(
+                      children: [
+                        // Water Intake Tab
+                        Flexible(
+                          flex: 1,
+                          child: Material(
+                            elevation: 2,
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.blue.withOpacity(0.1),
+                                    spreadRadius: 1,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              child: Padding(
+                                padding: EdgeInsets.all(cardPadding),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      "Water Intake",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.blue[800],
-                                      ),
-                                    ),
-                                    ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xFF98B3FF),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
+                                    // Header with title and button
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            "Water",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: titleFontSize,
+                                              color: Colors.blue[800],
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        minimumSize: Size(0, 0),
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (context) {
-                                            return Container(
-                                              height:
-                                                  MediaQuery.of(
-                                                    context,
-                                                  ).size.height *
-                                                  0.8,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.vertical(
-                                                      top: Radius.circular(25),
+                                        SizedBox(width: 4),
+                                        Material(
+                                          color: Color(0xFF98B3FF),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: InkWell(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            onTap: () {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                builder: (context) {
+                                                  return Container(
+                                                    height:
+                                                        MediaQuery.of(
+                                                          context,
+                                                        ).size.height *
+                                                        0.8,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.vertical(
+                                                            top:
+                                                                Radius.circular(
+                                                                  25,
+                                                                ),
+                                                          ),
                                                     ),
+                                                    child: WaterTrackingModal(),
+                                                  );
+                                                },
+                                              ).then((_) {
+                                                setState(() {});
+                                              });
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: buttonPadding,
+                                                vertical: buttonPadding,
                                               ),
-                                              child: WaterTrackingModal(),
-                                            );
-                                          },
-                                        ).then((_) {
-                                          setState(() {});
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.water_drop,
-                                        size: 14,
-                                        color: Colors.white,
-                                      ),
-                                      label: Text(
-                                        'Add',
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(
+                                                    Icons.water_drop,
+                                                    size:
+                                                        isSmallScreen ? 12 : 14,
+                                                    color: Colors.white,
+                                                  ),
+                                                  if (!isSmallScreen) ...[
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                      '+',
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 6),
+                                    // Value
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        "${WaterService.getTodayTotal().toStringAsFixed(1)}L",
                                         style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: valueFontSize,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Color(0xFF2196F3),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      "Today",
+                                      style: TextStyle(
+                                        fontSize: isSmallScreen ? 10 : 11,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    // Chart
+                                    Container(
+                                      height: chartHeight,
+                                      child: WaterIntakeChart(),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  "${WaterService.getTodayTotal().toStringAsFixed(1)} Liters",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF2196F3),
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "Real time updates",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                SizedBox(height: 12),
-                                Container(
-                                  height: 80,
-                                  child: WaterIntakeChart(),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    // Sleep Tab
-                    Expanded(
-                      child: Material(
-                        elevation: 2,
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(18)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.purple.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                offset: Offset(0, 2),
+                        SizedBox(width: 8),
+                        // Sleep Tab
+                        Flexible(
+                          flex: 1,
+                          child: Material(
+                            elevation: 2,
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.purple.withOpacity(0.1),
+                                    spreadRadius: 1,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              child: Padding(
+                                padding: EdgeInsets.all(cardPadding),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      "Sleep",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.purple[800],
-                                      ),
-                                    ),
-                                    ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xFFD1C4E9),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
+                                    // Header with title and button
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            "Sleep",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: titleFontSize,
+                                              color: Colors.purple[800],
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        minimumSize: Size(0, 0),
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (context) {
-                                            return Container(
-                                              height:
-                                                  MediaQuery.of(
-                                                    context,
-                                                  ).size.height *
-                                                  0.8,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.vertical(
-                                                      top: Radius.circular(25),
+                                        SizedBox(width: 4),
+                                        Material(
+                                          color: Color(0xFFD1C4E9),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: InkWell(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            onTap: () {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                builder: (context) {
+                                                  return Container(
+                                                    height:
+                                                        MediaQuery.of(
+                                                          context,
+                                                        ).size.height *
+                                                        0.8,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.vertical(
+                                                            top:
+                                                                Radius.circular(
+                                                                  25,
+                                                                ),
+                                                          ),
                                                     ),
+                                                    child: SleepTrackingModal(),
+                                                  );
+                                                },
+                                              ).then((_) {
+                                                setState(() {});
+                                              });
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: buttonPadding,
+                                                vertical: buttonPadding,
                                               ),
-                                              child: SleepTrackingModal(),
-                                            );
-                                          },
-                                        ).then((_) {
-                                          setState(() {});
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.bedtime,
-                                        size: 14,
-                                        color: Colors.white,
-                                      ),
-                                      label: Text(
-                                        'Add',
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(
+                                                    Icons.bedtime,
+                                                    size:
+                                                        isSmallScreen ? 12 : 14,
+                                                    color: Colors.white,
+                                                  ),
+                                                  if (!isSmallScreen) ...[
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                      '+',
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 6),
+                                    // Value
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        "${SleepService.getTodayTotal().toStringAsFixed(1)}h",
                                         style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: valueFontSize,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Color(0xFF9C27B0),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      "Today",
+                                      style: TextStyle(
+                                        fontSize: isSmallScreen ? 10 : 11,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    // Chart
+                                    Container(
+                                      height: chartHeight,
+                                      child: SleepTrackingChart(),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  "${SleepService.getTodayTotal().toStringAsFixed(1)} Hours",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF9C27B0),
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "Real time updates",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                SizedBox(height: 12),
-                                Container(
-                                  height: 80,
-                                  child: SleepTrackingChart(),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    // Calories Tab
-                    Expanded(
-                      child: Material(
-                        elevation: 2,
-                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(18)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.orange.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                offset: Offset(0, 2),
+                        SizedBox(width: 8),
+                        // Calories Tab
+                        Flexible(
+                          flex: 1,
+                          child: Material(
+                            elevation: 2,
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.orange.withOpacity(0.1),
+                                    spreadRadius: 1,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              child: Padding(
+                                padding: EdgeInsets.all(cardPadding),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      "Calories",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.orange[800],
-                                      ),
-                                    ),
-                                    ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xFFFFCC80),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
+                                    // Header with title and button
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            "Calories",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: titleFontSize,
+                                              color: Colors.orange[800],
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        minimumSize: Size(0, 0),
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (context) {
-                                            return Container(
-                                              height:
-                                                  MediaQuery.of(
-                                                    context,
-                                                  ).size.height *
-                                                  0.8,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.vertical(
-                                                      top: Radius.circular(25),
+                                        SizedBox(width: 4),
+                                        Material(
+                                          color: Color(0xFFFFCC80),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: InkWell(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            onTap: () {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                builder: (context) {
+                                                  return Container(
+                                                    height:
+                                                        MediaQuery.of(
+                                                          context,
+                                                        ).size.height *
+                                                        0.8,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.vertical(
+                                                            top:
+                                                                Radius.circular(
+                                                                  25,
+                                                                ),
+                                                          ),
                                                     ),
+                                                    child:
+                                                        CaloriesTrackingModal(),
+                                                  );
+                                                },
+                                              ).then((_) {
+                                                setState(() {});
+                                              });
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: buttonPadding,
+                                                vertical: buttonPadding,
                                               ),
-                                              child: CaloriesTrackingModal(),
-                                            );
-                                          },
-                                        ).then((_) {
-                                          setState(() {});
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.local_fire_department,
-                                        size: 14,
-                                        color: Colors.white,
-                                      ),
-                                      label: Text(
-                                        'Add',
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(
+                                                    Icons.local_fire_department,
+                                                    size:
+                                                        isSmallScreen ? 12 : 14,
+                                                    color: Colors.white,
+                                                  ),
+                                                  if (!isSmallScreen) ...[
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                      '+',
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 6),
+                                    // Value
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        "${CaloriesService.getTodayTotal().toStringAsFixed(0)}",
                                         style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: valueFontSize,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Color(0xFFFF9800),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      "kcal",
+                                      style: TextStyle(
+                                        fontSize: isSmallScreen ? 10 : 11,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    // Chart
+                                    Container(
+                                      height: chartHeight,
+                                      child: CaloriesTrackingChart(),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  "${CaloriesService.getTodayTotal().toStringAsFixed(0)} kcal",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFFF9800),
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "Real time updates",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                SizedBox(height: 12),
-                                Container(
-                                  height: 80,
-                                  child: CaloriesTrackingChart(),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  },
                 ),
               ),
 

@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       Text(
-                        _currentUser?.email ?? 'email@example.com',
+                        '${_currentUser?.gender ?? 'N/A'} • ${_currentUser?.age ?? 0} tahun',
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                             fontSize: 16,
@@ -151,24 +151,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           _currentUser?.name ?? 'N/A',
                         ),
                         _buildInfoRow(
-                          Icons.email,
-                          'Email',
-                          _currentUser?.email ?? 'N/A',
+                          Icons.wc,
+                          'Jenis Kelamin',
+                          _currentUser?.gender ?? 'N/A',
                         ),
                         _buildInfoRow(
                           Icons.cake,
-                          'Age',
-                          _currentUser?.age.toString() ?? 'N/A',
+                          'Umur',
+                          '${_currentUser?.age.toString() ?? 'N/A'} tahun',
                         ),
                         _buildInfoRow(
                           Icons.height,
-                          'Height',
+                          'Tinggi Badan',
                           '${_currentUser?.height ?? 0} cm',
                         ),
                         _buildInfoRow(
                           Icons.monitor_weight,
-                          'Weight',
+                          'Berat Badan',
                           '${_currentUser?.weight ?? 0} kg',
+                        ),
+                        _buildInfoRow(
+                          Icons.directions_run,
+                          'Tingkat Aktivitas',
+                          _currentUser?.activityLevel ?? 'N/A',
+                        ),
+                        _buildInfoRow(
+                          Icons.flag,
+                          'Tujuan Fitness',
+                          _currentUser?.fitnessGoal ?? 'N/A',
                         ),
                         _buildInfoRow(
                           Icons.calculate,
@@ -177,8 +187,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         _buildInfoRow(
                           Icons.category,
-                          'BMI Category',
+                          'Kategori BMI',
                           _currentUser?.bmiCategory ?? 'N/A',
+                        ),
+                        _buildInfoRow(
+                          Icons.local_fire_department,
+                          'Kebutuhan Kalori Harian',
+                          '${_currentUser?.dailyCalorieNeeds.toStringAsFixed(0) ?? 'N/A'} kal',
                         ),
                       ],
                     ),

@@ -59,73 +59,102 @@ class _WaterIntakeChartState extends State<WaterIntakeChart>
         final animatedValue = _animation.value;
         final percentage = (animatedValue / _dailyGoal).clamp(0.0, 1.0);
 
-        return Container(
-          width: 200,
-          height: 120,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background circle
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFE9F0FF).withOpacity(0.3),
-                ),
-              ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final availableWidth = constraints.maxWidth;
+            final availableHeight = constraints.maxHeight;
+            final size =
+                (availableWidth < availableHeight
+                    ? availableWidth
+                    : availableHeight) *
+                0.8;
+            final circleSize = size * 0.9;
+            final strokeWidth = size * 0.08;
+            final iconSize = size * 0.2;
+            final percentageFontSize = size * 0.18;
+            final valueFontSize = size * 0.12;
 
-              // Progress circle
-              SizedBox(
-                width: 90,
-                height: 90,
-                child: CircularProgressIndicator(
-                  value: percentage,
-                  strokeWidth: 8,
-                  backgroundColor: Color(0xFFE9F0FF),
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF98B3FF)),
-                ),
-              ),
-
-              // Center content
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            return Container(
+              width: availableWidth,
+              height: availableHeight,
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  Text(
-                    '${(percentage * 100).toStringAsFixed(0)}%',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF98B3FF),
+                  // Background circle
+                  Container(
+                    width: size,
+                    height: size,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFE9F0FF).withOpacity(0.3),
                     ),
                   ),
-                  Text(
-                    '${animatedValue.toStringAsFixed(1)}L',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w500,
+
+                  // Progress circle
+                  SizedBox(
+                    width: circleSize,
+                    height: circleSize,
+                    child: CircularProgressIndicator(
+                      value: percentage,
+                      strokeWidth: strokeWidth,
+                      backgroundColor: Color(0xFFE9F0FF),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Color(0xFF98B3FF),
+                      ),
+                    ),
+                  ),
+
+                  // Center content
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${(percentage * 100).toStringAsFixed(0)}%',
+                          style: TextStyle(
+                            fontSize: percentageFontSize,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF98B3FF),
+                          ),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${animatedValue.toStringAsFixed(1)}L',
+                          style: TextStyle(
+                            fontSize: valueFontSize,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // Water drop icon
+                  Positioned(
+                    top: (availableHeight - size) / 2 + size * 0.05,
+                    right: (availableWidth - size) / 2 + size * 0.05,
+                    child: Container(
+                      width: iconSize,
+                      height: iconSize,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF98B3FF),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.water_drop,
+                        size: iconSize * 0.6,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
-
-              // Water drop icon
-              Positioned(
-                top: 5,
-                right: 5,
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF98B3FF),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.water_drop, size: 14, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

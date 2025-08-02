@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnestX Logo Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .logo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .logo-small {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+        }
+        
+        .logo-large {
+            width: 300px;
+            height: 300px;
+            border-radius: 35px;
+        }
+        
+        .dumbbell {
+            width: 60%;
+            height: 60%;
+            position: relative;
+        }
+        
+        .dumbbell::before,
+        .dumbbell::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .dumbbell::before {
+            width: 25px;
+            height: 25px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .dumbbell::after {
+            width: 25px;
+            height: 25px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .dumbbell-bar {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: white;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 4px;
+        }
+        
+        .logo-text {
+            position: absolute;
+            bottom: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .size-label {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .download-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        .download-btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #333;">FitnestX Logo Generator</h1>
+    
+    <div class="logo-container">
+        <div>
+            <div class="logo logo-small" id="logo-48">
+                <div class="dumbbell">
+                    <div class="dumbbell-bar"></div>
+                </div>
+            </div>
+            <div class="size-label">48x48</div>
+        </div>
+        
+        <div>
+            <div class="logo" id="logo-192">
+                <div class="dumbbell">
+                    <div class="dumbbell-bar"></div>
+                </div>
+                <div class="logo-text">FX</div>
+            </div>
+            <div class="size-label">192x192</div>
+        </div>
+        
+        <div>
+            <div class="logo logo-large" id="logo-512">
+                <div class="dumbbell">
+                    <div class="dumbbell-bar"></div>
+                </div>
+                <div class="logo-text">FITNESTX</div>
+            </div>
+            <div class="size-label">512x512</div>
+        </div>
+    </div>
+    
+    <div class="download-section">
+        <h3>Download Instructions</h3>
+        <p>Right-click on each logo and select "Save as..." to download the images.</p>
+        <p>Then use an online tool like <a href="https://www.iloveimg.com/resize-image" target="_blank">iloveimg.com</a> to resize to exact dimensions needed.</p>
+    </div>
+    
+    <div class="instructions">
+        <h3>Required Sizes for Flutter App:</h3>
+        <h4>Android (mipmap folders):</h4>
+        <ul>
+            <li>mdpi: 48x48px</li>
+            <li>hdpi: 72x72px</li>
+            <li>xhdpi: 96x96px</li>
+            <li>xxhdpi: 144x144px</li>
+            <li>xxxhdpi: 192x192px</li>
+        </ul>
+        
+        <h4>iOS (Assets.xcassets/AppIcon.appiconset/):</h4>
+        <ul>
+            <li>20x20, 29x29, 40x40, 60x60, 76x76, 83.5x83.5, 1024x1024</li>
+            <li>Each with @1x, @2x, @3x variants</li>
+        </ul>
+        
+        <h4>Web (web/icons/):</h4>
+        <ul>
+            <li>Icon-192.png (192x192)</li>
+            <li>Icon-512.png (512x512)</li>
+            <li>Icon-maskable-192.png (192x192)</li>
+            <li>Icon-maskable-512.png (512x512)</li>
+        </ul>
+        
+        <h4>Windows:</h4>
+        <ul>
+            <li>app_icon.ico (multiple sizes: 16, 32, 48, 256)</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Add click handlers to download logos
+        document.querySelectorAll('.logo').forEach(logo => {
+            logo.addEventListener('click', function() {
+                // Convert to canvas and download
+                html2canvas(this).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `fitnestx-logo-${this.id.split('-')[1]}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            });
+        });
+    </script>
+    
+    <!-- Add html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

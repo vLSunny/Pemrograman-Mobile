@@ -1,4 +1,4 @@
-import 'package:fitnestx/screens/login_screen.dart';
+import 'package:fitnestx/screens/user_registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -99,12 +99,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder:
+                                (context) => const UserRegistrationScreen(),
                           ),
                         );
                       },
                       child: Text(
-                        "Go To Login",
+                        "Get Started",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,

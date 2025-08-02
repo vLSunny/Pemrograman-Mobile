@@ -48,7 +48,7 @@ class _AccessibilityScreenState extends State<AccessibilityScreen>
 
   @override
   Widget build(BuildContext context) {
-    final appSettings = Provider.of<AppSettingsProvider>(context);
+    // final appSettings = Provider.of<AppSettingsProvider>(context);
 
     return Scaffold(
       backgroundColor: _highContrast ? Colors.black : Colors.grey[50],

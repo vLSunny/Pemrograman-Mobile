@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/user_info_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import '../services/workout_service.dart';
 import '../models/workout_model.dart';
@@ -127,53 +128,6 @@ class _ProgressScreenState extends State<ProgressScreen>
             color: Color(0xFF2D3436),
           ),
         ),
-        leading: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_new, color: Color(0xFF2D3436)),
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                onPressed: () {
-                  // Navigate to settings screen or show settings dialog
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text('Settings clicked')));
-                },
-                icon: Icon(Icons.settings, color: Color(0xFF2D3436)),
-              ),
-            ),
-          ),
-        ],
       ),
       body: Column(
         children: [

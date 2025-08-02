@@ -53,73 +53,102 @@ class _CaloriesTrackingChartState extends State<CaloriesTrackingChart>
         final animatedValue = _animation.value;
         final percentage = (animatedValue / _dailyGoal).clamp(0.0, 1.0);
 
-        return Container(
-          width: 200,
-          height: 120,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFFF9800).withOpacity(0.1),
-                ),
-              ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final availableWidth = constraints.maxWidth;
+            final availableHeight = constraints.maxHeight;
+            final size =
+                (availableWidth < availableHeight
+                    ? availableWidth
+                    : availableHeight) *
+                0.8;
+            final circleSize = size * 0.9;
+            final strokeWidth = size * 0.08;
+            final iconSize = size * 0.2;
+            final percentageFontSize = size * 0.18;
+            final valueFontSize = size * 0.12;
 
-              SizedBox(
-                width: 90,
-                height: 90,
-                child: CircularProgressIndicator(
-                  value: percentage > 1.0 ? 1.0 : percentage,
-                  strokeWidth: 8,
-                  backgroundColor: Color(0xFFFFE0B2),
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFFF9800)),
-                ),
-              ),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            return Container(
+              width: availableWidth,
+              height: availableHeight,
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  Text(
-                    '${(percentage * 100).toStringAsFixed(0)}%',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF9800),
+                  // Background circle
+                  Container(
+                    width: size,
+                    height: size,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFFF9800).withOpacity(0.1),
                     ),
                   ),
-                  Text(
-                    '${animatedValue.toStringAsFixed(0)}kCal',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w500,
+
+                  // Progress circle
+                  SizedBox(
+                    width: circleSize,
+                    height: circleSize,
+                    child: CircularProgressIndicator(
+                      value: percentage > 1.0 ? 1.0 : percentage,
+                      strokeWidth: strokeWidth,
+                      backgroundColor: Color(0xFFFFE0B2),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Color(0xFFFF9800),
+                      ),
+                    ),
+                  ),
+
+                  // Center content
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${(percentage * 100).toStringAsFixed(0)}%',
+                          style: TextStyle(
+                            fontSize: percentageFontSize,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFFF9800),
+                          ),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${animatedValue.toStringAsFixed(0)}kCal',
+                          style: TextStyle(
+                            fontSize: valueFontSize,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // Fire icon
+                  Positioned(
+                    top: (availableHeight - size) / 2 + size * 0.05,
+                    right: (availableWidth - size) / 2 + size * 0.05,
+                    child: Container(
+                      width: iconSize,
+                      height: iconSize,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFF9800),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.local_fire_department,
+                        size: iconSize * 0.6,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
-
-              Positioned(
-                top: 5,
-                right: 5,
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFF9800),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.local_fire_department,
-                    size: 14,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

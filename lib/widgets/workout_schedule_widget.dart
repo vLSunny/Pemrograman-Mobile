@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fitnestx/models/workout_model.dart';
 import 'package:fitnestx/services/workout_service.dart';
 
 class WorkoutScheduleWidget extends StatefulWidget {

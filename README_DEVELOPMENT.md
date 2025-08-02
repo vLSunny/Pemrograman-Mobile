@@ -1,64 +1,65 @@
 # 📋 My Fit LifeStyle+ - Development Documentation
 
-## 📁 Arsitektur Folder Aplikasi
+## 📁 Arsitektur Folder Aplikasi (Updated)
 
-Aplikasi **My Fit LifeStyle+** dibangun dengan struktur folder yang terorganisir mengikuti best practices Flutter development. Berikut adalah penjelasan detail arsitektur folder:
+Aplikasi **My Fit LifeStyle+** telah berkembang menjadi aplikasi fitness komprehensif dengan 50+ screens dan arsitektur yang terorganisir mengikuti best practices Flutter development. Berikut adalah penjelasan detail arsitektur folder terkini:
 
 ```
 fitnestx/
 ├── android/                          # Konfigurasi platform Android
 │   ├── app/
 │   │   ├── src/main/
-│   │   │   ├── AndroidManifest.xml   # Manifest Android
-│   │   │   └── res/xml/              # Resource XML Android
+│   │   │   ├── AndroidManifest.xml   # Manifest Android dengan permissions
+│   │   │   └── res/xml/              # Network security config
+│   │   │       └── network_security_config.xml
 │   │   └── build.gradle.kts          # Build configuration Android
 │   └── gradle/                       # Gradle wrapper files
 ├── ios/                              # Konfigurasi platform iOS
 │   ├── Runner/
-│   │   ├── Info.plist               # Info plist iOS
+│   │   ├── Info.plist               # Info plist iOS dengan permissions
 │   │   └── Assets.xcassets/         # Asset iOS
 │   └── Runner.xcodeproj/            # Xcode project files
-├── assets/                          # Asset aplikasi
-│   ├── fonts/                       # Font files (Poppins)
+├── assets/                          # Asset aplikasi (Expanded)
+│   ├── fonts/                       # Font files (Poppins family)
 │   │   ├── Poppins-Bold.ttf
 │   │   └── Poppins-Regular.ttf
-│   └── images/                      # Gambar dan icon
-│       ├── FitnessImage1-10.jpeg    # Gambar fitness
-│       ├── HomeContentScreenWorkOutImage1-2.png
-│       ├── Image1-7.png             # UI images
-│       ├── google.png               # Google login icon
-│       └── welcomeimage.png         # Welcome screen image
-├── lib/                             # Source code utama aplikasi
-│   ├── main.dart                    # Entry point aplikasi
-│   ├── models/                      # Data models
+│   ├── images/                      # 20+ Gambar dan icon
+│   │   ├── FitnessImage1-10.jpeg    # Fitness content images
+│   │   ├── HomeContentScreenWorkOutImage1-2.png
+│   │   ├── Image1-7.png             # UI component images
+│   │   ├── google.png               # Social login icons
+│   │   └── welcomeimage.png         # Welcome screen assets
+│   ├── logo/                        # App branding
+│   │   └── fitnestx_logo.svg        # App logo
+│   └── screenshots/                 # App screenshots untuk dokumentasi
+├── lib/                             # Source code utama aplikasi (Comprehensive)
+│   ├── main.dart                    # Entry point dengan Provider setup
+│   ├── models/                      # Data models (6 models)
 │   │   ├── app_settings_model.dart  # Model pengaturan aplikasi
-│   │   ├── todo_model.dart          # Model todo/task
-│   │   ├── user_model.dart          # Model data user
-│   │   ├── user_profile_model.dart  # Model profil user
-│   │   ├── water_intake_model.dart  # Model konsumsi air
-│   │   └── workout_model.dart       # Model workout/latihan
+│   │   ├── todo_model.dart          # Model todo/task management
+│   │   ├── user_model.dart          # Model data user lengkap
+│   │   ├── user_profile_model.dart  # Model profil user extended
+│   │   ├── water_intake_model.dart  # Model konsumsi air dengan analytics
+│   │   └── workout_model.dart       # Model workout/latihan comprehensive
 │   ├── providers/                   # State management dengan Provider
-│   │   └── app_settings_provider.dart # Provider pengaturan aplikasi
-│   ├── screens/                     # UI Screens/Halaman
-│   │   ├── splash_screens/          # Splash screens
+│   │   └── app_settings_provider.dart # Provider pengaturan aplikasi global
+│   ├── screens/                     # 50+ UI Screens organized by category
+│   │   ├── splash_screens/          # 7 Splash screen variations
 │   │   │   ├── splash_screen1-6.dart
 │   │   │   ├── splash_screen_updated.dart
-│   │   │   ├── splash_screen_enhanced.dart
 │   │   │   └── splash_screen_first_time.dart
-│   │   ├── auth_screens/            # Authentication screens
-│   │   │   ├── login_screen.dart
+│   │   ├── auth_screens/            # 3 Authentication screens
 │   │   │   ├── login_screen_updated.dart
-│   │   │   ├── register_screen.dart
-│   │   │   ├── registration_screen.dart
-│   │   │   ├── forgot_password_screen.dart
+│   │   │   ├── user_registration_screen.dart
+│   │   │   ├── user_first_form_screen.dart
 │   │   │   └── welcome_screen.dart
-│   │   ├── main_screens/            # Main application screens
+│   │   ├── main_screens/            # 5 Core application screens
 │   │   │   ├── home_screen.dart
 │   │   │   ├── home_content_screen.dart
 │   │   │   ├── search_screen.dart
 │   │   │   ├── schedule_screen.dart
 │   │   │   └── progress_screen.dart
-│   │   ├── profile_screens/         # Profile related screens
+│   │   ├── profile_screens/         # 6 Profile management screens
 │   │   │   ├── profile_screen.dart
 │   │   │   ├── profile_screen_updated.dart
 │   │   │   ├── personal_information_screen.dart
@@ -66,52 +67,49 @@ fitnestx/
 │   │   │   ├── connected_accounts_screen.dart
 │   │   │   ├── privacy_security_screen.dart
 │   │   │   └── accessibility_screen.dart
-│   │   ├── health_screens/          # Health tracking screens
+│   │   ├── health_screens/          # 6 Health tracking screens
 │   │   │   ├── activity_tracker_screen.dart
 │   │   │   ├── activity_tracker_screen_fixed.dart
 │   │   │   ├── workout_tracker_screen.dart
 │   │   │   ├── sleep_tracker_screen.dart
 │   │   │   ├── sleep_schedule_screen.dart
 │   │   │   ├── progress_tracking_screen.dart
-│   │   │   └── air_quality_screen.dart
-│   │   ├── settings_screens/        # Settings screens
+│   │   │   ├── air_quality_screen.dart
+│   │   │   └── air_quality_screen_fixed.dart
+│   │   ├── settings_screens/        # 6 Settings & customization screens
 │   │   │   ├── notification_settings_screen.dart
 │   │   │   ├── theme_colors_screen.dart
 │   │   │   ├── font_size_screen.dart
 │   │   │   ├── workout_preferences_screen.dart
 │   │   │   ├── nutrition_goals_screen.dart
 │   │   │   └── training_schedule_screen.dart
-│   │   ├── goal_screens/            # Goal setting screens
+│   │   ├── goal_screens/            # 4 Goal management screens
 │   │   │   ├── goal_screen1-3.dart
 │   │   │   ├── add_goal_screen.dart
 │   │   │   └── user_first_form_screen.dart
-│   │   ├── medical_screens/         # Medical information screens
+│   │   ├── medical_screens/         # 4 Medical information screens
 │   │   │   ├── health_conditions_screen.dart
 │   │   │   ├── medications_screen.dart
 │   │   │   ├── allergies_screen.dart
 │   │   │   └── emergency_contacts_screen.dart
-│   │   ├── meal_screens/            # Meal planning screens
+│   │   ├── nutrition_screens/       # 2 Meal planning screens
 │   │   │   ├── meal_planner_screen.dart
 │   │   │   └── meal_schedule_screen.dart
-│   │   └── utility_screens/         # Utility screens
+│   │   └── utility_screens/         # 3 Utility screens
 │   │       ├── notifications_screen.dart
 │   │       ├── help_center_screen.dart
 │   │       └── add_alarm_screen.dart
-│   ├── services/                    # Business logic dan API services
+│   ├── services/                    # 7 Business logic services
 │   │   ├── auth_service.dart        # Authentication service
-│   │   ├── auth_service_fixed.dart  # Fixed authentication service
-│   │   ├── water_service.dart       # Water intake tracking service
-│   │   ├── sleep_service.dart       # Sleep tracking service
-│   │   ├── calories_service.dart    # Calories tracking service
-│   │   ├── workout_service.dart     # Workout tracking service
+│   │   ├── auth_service_fixed.dart  # Enhanced authentication
+│   │   ├── water_service.dart       # Water intake tracking
+│   │   ├── sleep_service.dart       # Sleep monitoring
+│   │   ├── calories_service.dart    # Calorie tracking
+│   │   ├── workout_service.dart     # Workout management
+│   │   ├── user_storage_service.dart # User data persistence
 │   │   ├── local_storage_service.dart # Local storage management
-│   │   ├── platform_storage_service.dart # Platform-specific storage
-│   │   ├── storage_manager.dart     # Storage manager utility
-│   │   ├── user_storage_service.dart # User data storage
-│   │   ├── social_auth_service.dart # Social authentication
-│   │   ├── registration_service.dart # User registration service
-│   │   └── registration_service_fixed.dart
-│   └── widgets/                     # Reusable UI components
+│   │   └── platform_storage_service.dart # Platform-specific storage
+│   └── widgets/                     # 10+ Reusable UI components
 │       ├── tracking_widgets/        # Health tracking widgets
 │       │   ├── water_intake_chart.dart
 │       │   ├── water_tracking_modal.dart
@@ -119,24 +117,26 @@ fitnestx/
 │       │   ├── sleep_tracking_modal.dart
 │       │   ├── calories_tracking_chart.dart
 │       │   └── calories_tracking_modal.dart
-│       ├── schedule_widgets/        # Schedule related widgets
+│       ├── schedule_widgets/        # Schedule management widgets
 │       │   ├── workout_schedule_tab.dart
 │       │   ├── workout_schedule_tab_simple.dart
 │       │   └── workout_schedule_widget.dart
-│       ├── utility_widgets/         # Utility widgets
-│       │   ├── todo_list_tab.dart
-│       │   ├── todo_list_tab_updated.dart
-│       │   ├── bmi_tab.dart
-│       │   └── responsive_wrapper.dart
-├── test/                           # Unit dan widget tests
+│       └── utility_widgets/         # General purpose widgets
+│           ├── todo_list_tab_updated.dart
+│           ├── user_info_widget.dart
+│           └── responsive_wrapper.dart
+├── test/                           # Testing framework
 │   └── widget_test.dart
-├── web/                           # Web platform files
-├── windows/                       # Windows platform files
-├── linux/                         # Linux platform files
-├── macos/                         # macOS platform files
-├── pubspec.yaml                   # Dependencies dan metadata
-├── analysis_options.yaml          # Dart analysis options
-└── README.md                      # Dokumentasi utama
+├── web/                           # Web platform support
+├── windows/                       # Windows desktop support
+├── linux/                         # Linux desktop support
+├── macos/                         # macOS desktop support
+├── pubspec.yaml                   # Dependencies (15+ packages)
+├── analysis_options.yaml          # Dart analysis configuration
+├── README.md                      # Main documentation
+├── README_DEVELOPMENT.md          # Development documentation
+├── MARKDOWN_GUIDE.md              # Documentation guidelines
+└── UAS/                           # Academic project backup
 ```
 
 ### 🏗️ Penjelasan Arsitektur
@@ -163,29 +163,37 @@ fitnestx/
 
 Berikut adalah daftar lengkap fitur dan komponen yang telah berhasil diimplementasi dalam aplikasi **My Fit LifeStyle+**:
 
-### 📱 **1. Authentication System**
-- ✅ **Login Screen** (`login_screen.dart`, `login_screen_updated.dart`)
-  - Form validation dengan email dan password
-  - Social login integration (Google)
-  - Remember me functionality
-  - Error handling dan user feedback
-
-- ✅ **Registration System** (`register_screen.dart`, `registration_screen.dart`)
-  - Multi-step registration process
+### 📱 **1. User Registration System**
+- ✅ **User Registration Screen** (`user_registration_screen.dart`)
+  - Multi-step registration wizard dengan progress indicator
+  - Comprehensive user data collection (personal info, health metrics, goals)
   - Form validation dan data sanitization
-  - User profile creation
-  - Email verification flow
+  - Real-time input validation dengan error feedback
+  - Profile picture upload functionality
+  - Terms and conditions acceptance
 
-- ✅ **Password Recovery** (`forgot_password_screen.dart`)
-  - Email-based password reset
-  - Security validation
-  - User-friendly recovery process
+- ✅ **User First Form** (`user_first_form_screen.dart`)
+  - Initial user data collection screen
+  - Basic information input (name, age, gender, height, weight)
+  - Fitness level assessment
+  - Goal setting wizard
+  - BMI calculation dan health recommendations
 
-- ✅ **Authentication Services** (`auth_service.dart`, `auth_service_fixed.dart`)
-  - Secure authentication logic
-  - Token management
-  - Session handling
+- ✅ **Enhanced Login System** (`login_screen_updated.dart`)
+  - Modern UI dengan smooth animations
+  - Email dan password validation
+  - Social login integration (Google, Facebook)
+  - Remember me functionality dengan secure storage
+  - Biometric authentication support
+  - Error handling dengan user-friendly messages
+
+- ✅ **Registration Services** (`auth_service.dart`, `auth_service_fixed.dart`)
+  - Secure user registration logic
+  - Data validation dan sanitization
+  - User profile creation dan storage
+  - Session management
   - Social authentication integration
+  - Local storage untuk user preferences
 
 ### 🏠 **2. Main Application Screens**
 - ✅ **Home Dashboard** (`home_screen.dart`, `home_content_screen.dart`)
@@ -677,8 +685,4 @@ Project ini mendemonstrasikan kemampuan untuk mengembangkan aplikasi mobile yang
 
 ---
 
-**📝 Catatan:** Dokumentasi ini akan terus diupdate seiring dengan pengembangan fitur baru dan improvements yang dilakukan pada aplikasi.
-
----
-
-*Dibuat dengan ❤️ menggunakan Flutter & Dart*
+*Dibuat dengan ❤️ menggunakan Flutter & Dart* *by Rakh*

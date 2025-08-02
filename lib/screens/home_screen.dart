@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _rippleController;
   late Animation<double> _scaleAnimation;
-  late Animation<double> _rippleAnimation;
+  // late Animation<double> _rippleAnimation;
 
   final List<Widget> _pages = [
     HomeContentScreen(), // Home
@@ -45,9 +45,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
     );
 
-    _rippleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _rippleController, curve: Curves.easeOut),
-    );
+    // _rippleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    //   CurvedAnimation(parent: _rippleController, curve: Curves.easeOut),
+    // );
   }
 
   @override
@@ -75,42 +75,44 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF8FAFC),
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
+        margin: const EdgeInsets.all(16),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.white.withOpacity(0.95),
-              Colors.white.withOpacity(0.98),
-            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.white, Colors.white.withOpacity(0.95)],
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 20,
-              offset: const Offset(0, -5),
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 32,
+              offset: const Offset(0, 8),
+              spreadRadius: 0,
             ),
             BoxShadow(
-              color: Colors.blue.withOpacity(0.05),
-              blurRadius: 40,
-              offset: const Offset(0, -10),
+              color: const Color(0xFF4A90E2).withOpacity(0.12),
+              blurRadius: 24,
+              offset: const Offset(0, 4),
+              spreadRadius: -4,
             ),
           ],
         ),
         child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
             child: ConvexAppBar(
               style: TabStyle.fixedCircle,
               backgroundColor: Colors.transparent,
-              activeColor: const Color(0xFF4A90E2),
-              color: Colors.grey.shade400,
-              height: 65,
-              curveSize: 80,
-              top: -25,
+              activeColor: Colors.white,
+              color: const Color(0xFF64748B),
+              height: 72,
+              curveSize: 90,
+              top: -28,
               items: [
                 TabItem(
                   icon: AnimatedBuilder(
@@ -119,37 +121,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       return Transform.scale(
                         scale: _currentIndex == 0 ? _scaleAnimation.value : 1.0,
                         child: Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(10),
                           decoration:
                               _currentIndex == 0
                                   ? BoxDecoration(
                                     shape: BoxShape.circle,
-                                    gradient: RadialGradient(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        const Color(
-                                          0xFF4A90E2,
-                                        ).withOpacity(0.3),
-                                        Colors.transparent,
+                                        const Color(0xFF667EEA),
+                                        const Color(0xFF764BA2),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(
-                                          0xFF4A90E2,
+                                          0xFF667EEA,
                                         ).withOpacity(0.4),
-                                        blurRadius: 15,
+                                        blurRadius: 20,
                                         spreadRadius: 2,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0.9),
+                                        blurRadius: 8,
+                                        spreadRadius: -2,
+                                        offset: const Offset(0, -2),
                                       ),
                                     ],
                                   )
-                                  : null,
+                                  : BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                  ),
                           child: Icon(
-                            Icons.home_filled,
-                            size: 28,
+                            Icons.home_rounded,
+                            size: 26,
                             color:
                                 _currentIndex == 0
-                                    ? const Color(0xFF4A90E2)
-                                    : Colors.grey.shade400,
+                                    ? Colors.white
+                                    : const Color(0xFF64748B),
                           ),
                         ),
                       );
@@ -163,37 +175,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       return Transform.scale(
                         scale: _currentIndex == 1 ? _scaleAnimation.value : 1.0,
                         child: Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(10),
                           decoration:
                               _currentIndex == 1
                                   ? BoxDecoration(
                                     shape: BoxShape.circle,
-                                    gradient: RadialGradient(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        const Color(
-                                          0xFF4A90E2,
-                                        ).withOpacity(0.3),
-                                        Colors.transparent,
+                                        const Color(0xFF667EEA),
+                                        const Color(0xFF764BA2),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(
-                                          0xFF4A90E2,
+                                          0xFF667EEA,
                                         ).withOpacity(0.4),
-                                        blurRadius: 15,
+                                        blurRadius: 20,
                                         spreadRadius: 2,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0.9),
+                                        blurRadius: 8,
+                                        spreadRadius: -2,
+                                        offset: const Offset(0, -2),
                                       ),
                                     ],
                                   )
-                                  : null,
+                                  : BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                  ),
                           child: Icon(
-                            Icons.calendar_month,
-                            size: 28,
+                            Icons.calendar_today_rounded,
+                            size: 26,
                             color:
                                 _currentIndex == 1
-                                    ? const Color(0xFF4A90E2)
-                                    : Colors.grey.shade400,
+                                    ? Colors.white
+                                    : const Color(0xFF64748B),
                           ),
                         ),
                       );
@@ -207,56 +229,61 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       return Transform.scale(
                         scale: _currentIndex == 2 ? _scaleAnimation.value : 1.0,
                         child: Container(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(14),
                           decoration:
                               _currentIndex == 2
                                   ? BoxDecoration(
                                     shape: BoxShape.circle,
                                     gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        const Color(0xFF4A90E2),
-                                        const Color(0xFF357ABD),
+                                        const Color(0xFF667EEA),
+                                        const Color(0xFF764BA2),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(
-                                          0xFF4A90E2,
-                                        ).withOpacity(0.6),
-                                        blurRadius: 20,
-                                        spreadRadius: 3,
+                                          0xFF667EEA,
+                                        ).withOpacity(0.5),
+                                        blurRadius: 28,
+                                        spreadRadius: 4,
+                                        offset: const Offset(0, 12),
                                       ),
                                       BoxShadow(
-                                        color: Colors.white.withOpacity(0.8),
-                                        blurRadius: 10,
-                                        spreadRadius: -2,
-                                        offset: const Offset(0, -2),
+                                        color: Colors.white.withOpacity(0.95),
+                                        blurRadius: 12,
+                                        spreadRadius: -3,
+                                        offset: const Offset(0, -4),
                                       ),
                                     ],
                                   )
                                   : BoxDecoration(
                                     shape: BoxShape.circle,
                                     gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        Colors.grey.shade300,
-                                        Colors.grey.shade400,
+                                        const Color(0xFFE2E8F0),
+                                        const Color(0xFFCBD5E1),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.grey.withOpacity(0.3),
-                                        blurRadius: 8,
-                                        offset: const Offset(0, 2),
+                                        color: Colors.black.withOpacity(0.08),
+                                        blurRadius: 12,
+                                        offset: const Offset(0, 4),
                                       ),
                                     ],
                                   ),
                           child: Icon(
-                            Icons.search,
-                            size: 32,
+                            Icons.search_rounded,
+                            size: 30,
                             color:
                                 _currentIndex == 2
                                     ? Colors.white
-                                    : Colors.grey.shade600,
+                                    : const Color(0xFF64748B),
                           ),
                         ),
                       );
@@ -270,37 +297,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       return Transform.scale(
                         scale: _currentIndex == 3 ? _scaleAnimation.value : 1.0,
                         child: Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(10),
                           decoration:
                               _currentIndex == 3
                                   ? BoxDecoration(
                                     shape: BoxShape.circle,
-                                    gradient: RadialGradient(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        const Color(
-                                          0xFF4A90E2,
-                                        ).withOpacity(0.3),
-                                        Colors.transparent,
+                                        const Color(0xFF667EEA),
+                                        const Color(0xFF764BA2),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(
-                                          0xFF4A90E2,
+                                          0xFF667EEA,
                                         ).withOpacity(0.4),
-                                        blurRadius: 15,
+                                        blurRadius: 20,
                                         spreadRadius: 2,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0.9),
+                                        blurRadius: 8,
+                                        spreadRadius: -2,
+                                        offset: const Offset(0, -2),
                                       ),
                                     ],
                                   )
-                                  : null,
+                                  : BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                  ),
                           child: Icon(
-                            Icons.camera_alt_rounded,
-                            size: 28,
+                            Icons.analytics_rounded,
+                            size: 26,
                             color:
                                 _currentIndex == 3
-                                    ? const Color(0xFF4A90E2)
-                                    : Colors.grey.shade400,
+                                    ? Colors.white
+                                    : const Color(0xFF64748B),
                           ),
                         ),
                       );
@@ -314,37 +351,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       return Transform.scale(
                         scale: _currentIndex == 4 ? _scaleAnimation.value : 1.0,
                         child: Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(10),
                           decoration:
                               _currentIndex == 4
                                   ? BoxDecoration(
                                     shape: BoxShape.circle,
-                                    gradient: RadialGradient(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        const Color(
-                                          0xFF4A90E2,
-                                        ).withOpacity(0.3),
-                                        Colors.transparent,
+                                        const Color(0xFF667EEA),
+                                        const Color(0xFF764BA2),
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(
-                                          0xFF4A90E2,
+                                          0xFF667EEA,
                                         ).withOpacity(0.4),
-                                        blurRadius: 15,
+                                        blurRadius: 20,
                                         spreadRadius: 2,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0.9),
+                                        blurRadius: 8,
+                                        spreadRadius: -2,
+                                        offset: const Offset(0, -2),
                                       ),
                                     ],
                                   )
-                                  : null,
+                                  : BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                  ),
                           child: Icon(
-                            Icons.person,
-                            size: 28,
+                            Icons.person_rounded,
+                            size: 26,
                             color:
                                 _currentIndex == 4
-                                    ? const Color(0xFF4A90E2)
-                                    : Colors.grey.shade400,
+                                    ? Colors.white
+                                    : const Color(0xFF64748B),
                           ),
                         ),
                       );

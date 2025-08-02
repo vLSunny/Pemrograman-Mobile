@@ -25,36 +25,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             ),
           ),
         ),
-        leading: Padding(
-          padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0, 10.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade300,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.more_horiz_rounded, color: Colors.black),
-              ),
-            ),
-          ),
-        ],
         backgroundColor: Colors.white,
       ),
 
